@@ -4,6 +4,25 @@
 { config, pkgs, ... }:
 
 {
+  # Must add the home-manager channel:
+  # sudo nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
+  # sudo nix-channel --update
+  imports = [ <home-manager/nixos> ];
+
+  users = {
+    defaultUserShell = pkgs.zsh;
+    # Don't forget to set a password with ‘passwd’.
+    users.ryan = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    };
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPackages = true;
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -87,15 +106,6 @@
     xkbOptions = "caps:swapescape";
     libinput.enable = true; # Touchpad support
     windowManager.bspwm.enable = true;
-  };
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    # Don't forget to set a password with ‘passwd’.
-    users.ryan = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    };
   };
 
   # This value determines the NixOS release from which the default
