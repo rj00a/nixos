@@ -4,23 +4,72 @@
 { config, pkgs, ... }:
 
 {
-  # Must add the home-manager channel:
-  # sudo nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
-  # sudo nix-channel --update
-  imports = [ <home-manager/nixos> ];
+  imports = [ ./home.nix ];
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    alacritty
+    ascii
+    audacity
+    bitwarden
+    capitaine-cursors
+    corefonts
+    dmenu    
+    fzf
+    ghc
+    git
+    gperf
+    htop
+    jq
+    krita
+    maim
+    ncdu
+    neofetch
+    neovim
+    nixfmt
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-extra
+    pandoc
+    polybar
+    ripgrep
+    scc
+    shellcheck
+    steam
+    strace
+    sxhkd
+    sxiv
+    tree
+    unclutter
+    unrar
+    unzip
+    valgrind
+    veracrypt
+    wget
+    woeusb
+    xwallpaper
+    youtube-dl
+    zathura
+    zip
+    zsh
+  ];
+
+  security.sudo = {
+    enable = true;
+    extraConfig = "%wheel ALL=(ALL) NOPASSWD: ALL";
+  };
 
   users = {
     defaultUserShell = pkgs.zsh;
     # Don't forget to set a password with ‘passwd’.
     users.ryan = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+	"networkmanager"
+      ];
     };
-  };
-
-  home-manager = {
-    useUserPackages = true;
-    useGlobalPackages = true;
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -48,51 +97,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    neovim
-    zsh
-    ghc
-    shellcheck
-    pandoc
-    unclutter
-    ascii
-    zip
-    fzf
-    steam
-    gperf
-    htop
-    jq
-    krita
-    maim
-    sxiv
-    zathura
-    ncdu
-    neofetch
-    polybar
-    ripgrep
-    scc
-    steam
-    strace
-    sxhkd
-    tree
-    unrar
-    unzip
-    valgrind
-    veracrypt
-    woeusb
-    youtube-dl
-    audacity
-    git
-    bitwarden
-    stow
-  ];
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -104,8 +108,10 @@
     enable = true;
     layout = "us";
     xkbOptions = "caps:swapescape";
-    libinput.enable = true; # Touchpad support
+    #displayManager.startx.enable = true;
     windowManager.bspwm.enable = true;
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 25;
   };
 
   # This value determines the NixOS release from which the default
