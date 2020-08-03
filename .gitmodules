@@ -1,0 +1,9 @@
+[submodule "submodules/zsh-syntax-highlighting"]
+	path = submodules/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "submodules/zsh-z"]
+	path = submodules/zsh-z
+	url = https://github.com/agkozak/zsh-z.git
+[submodule "submodules/home-manager"]
+	path = submodules/home-manager
+	url = https://github.com/rycee/home-manager.git

@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# Note: This path should be absolute
+. /etc/nixos/files/bspwmrc-common.sh
+
+bspc monitor eDP-1 -d 1 2 3 4 5 6
+

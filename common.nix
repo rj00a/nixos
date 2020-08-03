@@ -8,52 +8,54 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    alacritty
-    ascii
-    audacity
-    bitwarden
-    capitaine-cursors
-    corefonts
-    dmenu    
-    fzf
-    ghc
-    git
-    gperf
-    htop
-    jq
-    krita
-    maim
-    ncdu
-    neofetch
-    neovim
-    nixfmt
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-extra
-    pandoc
-    polybar
-    ripgrep
-    scc
-    shellcheck
-    steam
-    strace
-    sxhkd
-    sxiv
-    tree
-    unclutter
-    unrar
-    unzip
-    valgrind
-    veracrypt
-    wget
-    woeusb
-    xwallpaper
-    youtube-dl
-    zathura
-    zip
-    zsh
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      ascii
+      audacity
+      bitwarden
+      capitaine-cursors
+      corefonts
+      dmenu
+      file
+      ghc
+      git
+      gperf
+      htop
+      jq
+      krita
+      maim
+      ncdu
+      neofetch
+      neovim
+      nixfmt
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-extra
+      pandoc
+      playerctl
+      ripgrep
+      ripgrep
+      scc
+      shellcheck
+      steam
+      strace
+      sxiv
+      tree
+      unrar
+      unzip
+      valgrind
+      veracrypt
+      wget
+      woeusb
+      youtube-dl
+      zathura
+      zip
+      zsh      
+    ];
+    pathsToLink = [
+      "/share/zsh" # zsh completions for system packages.
+    ];
+  };
 
   security.sudo = {
     enable = true;
@@ -65,10 +67,7 @@
     # Don't forget to set a password with ‘passwd’.
     users.ryan = {
       isNormalUser = true;
-      extraGroups = [
-        "wheel"
-	"networkmanager"
-      ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
   };
 
@@ -82,6 +81,11 @@
       configurationLimit = 100;
     };
   };
+
+  swapDevices = [{
+    device = "/var/swapfile";
+    size = 8192;
+  }];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -108,11 +112,27 @@
     enable = true;
     layout = "us";
     xkbOptions = "caps:swapescape";
-    #displayManager.startx.enable = true;
-    windowManager.bspwm.enable = true;
+    displayManager.lightdm = {
+      enable = true;
+      background = files/wallpaper.jpg;
+    };
+    # Note: Letting home-manager handle this gave me problems.
+    windowManager.bspwm = {
+      enable = true;
+      sxhkd.configFile = files/sxhkdrc;
+    };
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
   };
+
+  #programs.zsh = {
+  #  enable = true;
+  #  autosuggestions.enable = true;
+  #  enableCompletion = true;
+  #  histSize = 10000;
+  #  ohMyZsh.enable = true;
+  #  interactiveShellInit = builtins.readFile files/init.zsh;
+  #};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

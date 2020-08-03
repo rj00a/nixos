@@ -1,151 +1,16 @@
 { config, pkgs, ... }:
 
-let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    #rev = "2dd4c20f496758fd5c573b275a29178516493921";
-    ref = "master";
-  };
-in {
-  imports = [ (import "${home-manager}/nixos") ];
+{
+  imports = [ (import submodules/home-manager/nixos) ];
 
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ryan = {
-      home.file.".xinitrc".text = "exec bspwm";
-      xsession.windowManager.bspwm = {
-        enable = true;
-        settings = {
-          border_width = 2;
-          window_gap = 7;
-          split_ratio = 0.5;
-          borderless_monocle = true;
-          gapless_monocle = true;
-          single_monocle = true;
-          focus_follows_pointer = true;
-          remove_disabled_monitors = true;
-          history_aware_focus = true;
-          pointer_modifier = "mod4";
-
-          normal_border_color = "'#444444'";
-          focused_border_color = "'#af5f5f'";
-          urgent_border_color = "'#bd2c40'";
-        };
-        startupPrograms = [ "xwallpaper --zoom /etc/nixos/wallpaper.jpg &" ];
-      };
       services = {
-        sxhkd = {
-          enable = true;
-          keybindings = {
-            # Restart bspwm
-            "super + shift + r" = "bspc wm -r";
-
-            # Log out
-            "super + shift + q" = "bspc quit";
-
-            # Run alacritty
-            "super + Return" = "alacritty";
-
-            # Volume control
-            "XF86Audio{RaiseVolume,LowerVolume,Mute}" =
-              "amixer sset 'Master' {4%+,4%-,toggle}";
-
-            # Media Player controls
-            "XF86Audio{Play,Pause,Next,Prev}" =
-              "playerctl {play,pause,next,previous}";
-
-            # Screen brightness controls
-            "XF86{MonBrightnessUp,BrightnessDown}" =
-              "sudo xbacklight -{inc,dec} 5";
-
-            # Screenshot controls
-            "{_,Shift + }Print" =
-              "maim -u -{s,i $(xdotool getactivewindow)} ~/last-screenshot.png";
-
-            # Run dmenu
-            "super + d" =
-              "dmenu_run -fn Ubuntu-Mono -nb '#121212' -sf '#121212' -sb 'af5f5f' -nf '#af5f5f'";
-
-            # Switch between tiled and monocle layout
-            "super + space" = "bspc desktop -l next";
-
-            # Focus the next/previous node in the given direction
-            "super + {n,p}" = "bspc node -f {next,prev}.local";
-
-            # Toggle window states from tiled to some other state
-            "super + {t,shift + t,s,f}" =
-              "bspc node -t ~{tiled,pseudo_tiled,floating,fullscreen}";
-
-            # Focus/move the node in the given direction
-            "super + {_,shift + }{h,j,k,l}" =
-              "bspc node -{f,s} {west,south,north,east}";
-
-            # Close or kill the current node
-            "super + {_,shift + }q" = "bspc node -{c,k}";
-
-            # Swap the current node and the biggest node
-            "super + g" = "bspc node -s biggest";
-
-            # Rotate children
-            "super + r" =
-              "bspc node -f @parent && bspc node -R 90 && bspc node -f last";
-
-            # Focus the older or newer node in the focus history
-            "super + {o,i}" =
-              "bspc wm -h off; bspc node {older,newer} -f; bspc wm -h on";
-
-            # Focus or send to the given desktop
-            "super + {_,shift + }{1-6}" = "bspc {desktop -f,node -d} '{1-6}'";
-
-            ###########################################################
-
-            # send the newest marked node to the newest preselected node
-            "super + y" =
-              "bspc node newest.marked.local -n newest.!automatic.local";
-
-            # set the node flags
-            "super + ctrl + {m,x,y,z}" =
-              "bspc node -g {marked,locked,sticky,private}";
-
-            # focus the node for the given path jump
-            "super + {p,b,comma,period}" =
-              "bspc node -f @{parent,brother,first,second}";
-
-            # focus the next/previous desktop in the current monitor
-            "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
-
-            # focus the last node/desktop
-            "super + {grave,Tab}" = "bspc {node,desktop} -f last";
-
-            # preselect the direction
-            "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
-
-            # preselect the ratio
-            "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
-
-            # cancel the preselection for the focused node
-            "super + ctrl + space" = "bspc node -p cancel";
-
-            # cancel the preselection for the focused desktop
-            "super + ctrl + shift + space" =
-              "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
-
-            # expand a window by moving one of its sides outward
-            "super + alt + {h,j,k,l}" =
-              "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
-
-            # contract a window by moving one of its sides inward
-            "super + alt + shift + {h,j,k,l}" =
-              "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
-
-            # move a floating window
-            "super + {Left,Down,Up,Right}" =
-              "bspc node -v {-20 0,0 20,0 -20,20 0}";
-          };
-        };
         polybar = {
           enable = true;
+          package = pkgs.polybarFull;
           config = {
             colors = {
               background = "#121212";
@@ -156,7 +21,7 @@ in {
               alert = "#bd2c40";
             };
             "bar/main" = {
-              modules-left = "date bspwm title";
+              modules-left = "date title";
               modules-right =
                 "cpu memory temperature pulseaudio backlight battery";
               modules-center = "xkeyboard";
@@ -165,7 +30,7 @@ in {
               foreground = "\${colors.foreground}";
               module-margin = 2;
               height = 25;
-              font-0 = "Consolas:size=11;3";
+              font-0 = "Noto Sans:size=11;3";
               padding-left = 2;
               padding-right = 2;
               tray-position = "left";
@@ -253,6 +118,7 @@ in {
             "module/xbacklight" = {
               type = "internal/xbacklight";
               format = "<label> <bar>";
+              label = "Lgt %percentage%%";
               bar-width = 10;
               bar-indicator = "|";
               bar-indicator-foreground = "#fff";
@@ -284,45 +150,111 @@ in {
           userName = "Ryan Johnson";
           userEmail = "ryanj00a@gmail.com";
         };
-	alacritty = {
+        alacritty = {
           enable = true;
-	  settings = {
-	    font = {
+          settings = {
+            font = {
               normal.family = "Consolas";
-              size = 10;
-	    };
-	    colors = {
+              size = 9;
+            };
+            colors = {
               primary = {
                 background = "0x000000";
-	        foreground = "0xeaeaea";
-	      };
-	      cursor = {
-                text = "0x000000"; # TODO: try gray?
-	        cursor = "0x00ff00";
-	      };
-	      normal = {
+                foreground = "0xeaeaea";
+              };
+              cursor = {
+                text = "0x000000";
+                cursor = "0x00ff00";
+              };
+              normal = {
                 black = "0x000000";
-	        red = "0xaa0000";
+                red = "0xaa0000";
                 green = "0x00aa00";
-	        yellow = "0xaa5500";
-	        blue = "0x0000aa";
-	        magenta = "0xaa00aa";
-	        cyan = "0x00aaaa";
-	        white = "0xaaaaaa";
-	      };
-	      bright = {
+                yellow = "0xaa5500";
+                blue = "0x0000aa";
+                magenta = "0xaa00aa";
+                cyan = "0x00aaaa";
+                white = "0xaaaaaa";
+              };
+              bright = {
                 black = "0x555555";
-	        red = "0xff5555";
-	        green = "0x55ff55";
-	        yellow = "0xffff55";
-	        blue = "0x5555ff";
-	        magenta = "0xff55ff";
-	        cyan = "0x55ffff";
-	        white = "0xffffff";
-	      };
-	    };
-	  };
-	};
+                red = "0xff5555";
+                green = "0x55ff55";
+                yellow = "0xffff55";
+                blue = "0x5555ff";
+                magenta = "0xff55ff";
+                cyan = "0x55ffff";
+                white = "0xffffff";
+              };
+            };
+          };
+        };
+        chromium = {
+          enable = true;
+          #extensions = [
+          #  "ajopnjidmegmdimjlfnijceegpefgped" # BetterTTV
+          #  "ghbmnnjooekpmoecnnnilnnbdlolhkhi" # Google Docs Offline
+          #  "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
+          #  "chphlpgkkbolifaimnlloiipkdnihall" # OneTab
+          #  "oeehccpigolildhagkmlpofjplfajiam" # Reddit Comments for YouTube
+          #  "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancement Suite
+          #  "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+          #  "pgdnlhfefecpicbbihgmbmffkjpaplco" # uBlock Origin Extra
+          #  "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+          #];
+        };
+        htop = {
+          enable = true;
+          hideThreads = true;
+          hideUserlandThreads = true;
+          highlightBaseName = true;
+          showProgramPath = false;
+        };
+        fzf = {
+          enable = true;
+          enableZshIntegration = true;
+        };
+        zsh = {
+          enable = true;
+          enableAutosuggestions = true;
+          enableCompletion = true;
+          enableVteIntegration = true;
+          autocd = true;
+          oh-my-zsh = {
+            enable = true;
+            plugins = [
+              "aws"
+              "cargo"
+              "colored-man-pages"
+              "common-aliases"
+              "ripgrep"
+              "rsync"
+              "rust"
+              "rustup"
+              "sbt"
+              "scala"
+              "screen"
+              "git"
+              "ripgrep"
+            ];
+          };
+          plugins = [
+            {
+              name = "zsh-syntax-highlighting";
+              src = submodules/zsh-syntax-highlighting;
+            }
+            {
+              name = "zsh-z";
+              src = submodules/zsh-z;
+            }
+          ];
+          initExtra = ''
+            PROMPT="%F{7}[%f%B%F{14}%n%f%b@%F{13}%m%f %F{7}%~%f%(?.. %F{9}%?%f)%F{7}]%f "
+            # Expand command aliases with tab
+            zstyle ':completion:*' completer _expand_alias _complete _ignored
+	    export VISUAL=nvim
+	    export EDITOR=nvim'';
+        };
       };
     };
   };
