@@ -25,8 +25,8 @@ export TZ=America/Los_Angeles
 # Fixes a bad interaction between intellij and bspwm
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-alias ls='ls -g --color=auto'
-alias la='ls -lAgFh'
+alias ls='ls --color=auto --group-directories-first'
+alias la='ls -lAFh --group-directories-first'
 
 # Don't cache opened images
 alias sxiv='sxiv -p'

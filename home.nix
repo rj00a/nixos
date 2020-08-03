@@ -7,6 +7,12 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ryan = {
+      xsession = { # TODO
+        pointerCursor = {
+          package = pkgs.capitaine-cursors;
+          name = "Capitaine Cursors";
+        };
+      };
       services = {
         polybar = {
           enable = true;
@@ -214,13 +220,13 @@
           enable = true;
           enableZshIntegration = true;
         };
-	mpv = { #TODO
+        mpv = { # TODO
           enable = true;
           config = {
             profile = "gpu-hq";
-	    ytdl-format = "bestvideo+bestaudio";
-	  };
-	};
+            ytdl-format = "bestvideo+bestaudio";
+          };
+        };
         zsh = {
           enable = true;
           enableAutosuggestions = true;
@@ -254,7 +260,33 @@
               src = submodules/zsh-z;
             }
           ];
-	  initExtra = builtins.readFile files/init.zsh;
+          initExtra = builtins.readFile files/init.zsh;
+        };
+        neovim = {
+          enable = true;
+          plugins = with pkgs.vimPlugins; with pkgs.vimUtils; [
+            matchit-zip
+            nerdtree
+            vim-airline
+            vim-airline-themes
+            vim-floaterm
+            vim-polyglot
+            vim-surround
+            fzf-vim
+            (buildVimPlugin {
+              name = "alduin";
+              src = files/alduin;
+            })
+            (buildVimPlugin {
+              name = "searchindex";
+              src = submodules/vim-searchindex;
+            })
+            (buildVimPlugin {
+              name = "bbye";
+              src = submodules/vim-bbye;
+            })
+          ];
+          extraConfig = builtins.readFile files/init.vim;
         };
       };
     };
