@@ -214,6 +214,13 @@
           enable = true;
           enableZshIntegration = true;
         };
+	mpv = { #TODO
+          enable = true;
+          config = {
+            profile = "gpu-hq";
+	    ytdl-format = "bestvideo+bestaudio";
+	  };
+	};
         zsh = {
           enable = true;
           enableAutosuggestions = true;
@@ -227,6 +234,7 @@
               "cargo"
               "colored-man-pages"
               "common-aliases"
+              "git"
               "ripgrep"
               "rsync"
               "rust"
@@ -234,8 +242,6 @@
               "sbt"
               "scala"
               "screen"
-              "git"
-              "ripgrep"
             ];
           };
           plugins = [
@@ -248,12 +254,7 @@
               src = submodules/zsh-z;
             }
           ];
-          initExtra = ''
-            PROMPT="%F{7}[%f%B%F{14}%n%f%b@%F{13}%m%f %F{7}%~%f%(?.. %F{9}%?%f)%F{7}]%f "
-            # Expand command aliases with tab
-            zstyle ':completion:*' completer _expand_alias _complete _ignored
-	    export VISUAL=nvim
-	    export EDITOR=nvim'';
+	  initExtra = builtins.readFile files/init.zsh;
         };
       };
     };

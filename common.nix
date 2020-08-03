@@ -16,6 +16,7 @@
       capitaine-cursors
       corefonts
       dmenu
+      fd
       file
       ghc
       git
@@ -34,12 +35,12 @@
       pandoc
       playerctl
       ripgrep
-      ripgrep
       scc
       shellcheck
       steam
       strace
       sxiv
+      trash-cli
       tree
       unrar
       unzip
