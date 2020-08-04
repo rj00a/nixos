@@ -140,7 +140,7 @@ nnoremap k gk
 vnoremap k gk
 
 " Clear search buffer.
-nnoremap <silent> <esc> :noh<cr><esc>
+nnoremap <silent> <cr> :noh<cr>
 
 " Disable the annoying message in the command line when using Ctrl-c.
 nnoremap <c-c> <silent> <c-c>
@@ -179,23 +179,15 @@ noremap <silent> <c-j> :bn<cr>
 inoremap <silent> <c-j> <esc>:bn<cr>
 
 " Session slots.
-"TODO: predefined veriable representing the nvim directory?
-nnoremap <leader>1 <esc>:wa\|mksession! ~/.config/nvim/sessions/1.vim<cr>
-nnoremap <leader>! <esc>:so ~/.config/nvim/sessions/1.vim<cr>
-nnoremap <leader>2 <esc>:wa\|mksession! ~/.config/sessions/2.vim<cr>
-nnoremap <leader>@ <esc>:so ~/.config/nvim/sessions/2.vim<cr>
-nnoremap <leader>3 <esc>:wa\|mksession! ~/.config/nvim/sessions/3.vim<cr>
-nnoremap <leader># <esc>:so ~/.config/nvim/sessions/3.vim<cr>
+"nnoremap <leader>1 <esc>:wa\|mksession! ~/.config/nvim/sessions/1.vim<cr>
+"nnoremap <leader>! <esc>:so ~/.config/nvim/sessions/1.vim<cr>
+"nnoremap <leader>2 <esc>:wa\|mksession! ~/.config/sessions/2.vim<cr>
+"nnoremap <leader>@ <esc>:so ~/.config/nvim/sessions/2.vim<cr>
+"nnoremap <leader>3 <esc>:wa\|mksession! ~/.config/nvim/sessions/3.vim<cr>
+"nnoremap <leader># <esc>:so ~/.config/nvim/sessions/3.vim<cr>
 
-" Source vimrc.
-nnoremap <leader>- <esc>:source $MYVIMRC\|AirlineToggle\|AirlineToggle<cr>
-
-" Edit vimrc.
-nnoremap <leader>= <esc>:e $MYVIMRC<cr>
-
-" Copy line (or selection) into command buffer and run it.
-"nnoremap <leader>- yy:<c-r>"<bs><cr>
-"vnoremap <leader>- y:<c-r>"<cr>
+" Source this file.
+nnoremap <leader>- <esc>:so %\|AirlineToggle\|AirlineToggle<cr>
 
 " Delete trailing whitespace in buffer. (Or selection).
 nnoremap <leader>0 :%s/\s\+$//e\|noh\|up<cr>

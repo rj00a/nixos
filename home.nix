@@ -1,3 +1,5 @@
+# Configuration specifically for home-manager
+
 { config, pkgs, ... }:
 
 {
@@ -7,10 +9,11 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ryan = {
-      xsession = { # TODO
+      xsession = {
         pointerCursor = {
           package = pkgs.capitaine-cursors;
-          name = "Capitaine Cursors";
+          name = "capitaine-cursors";
+          size = 32;
         };
       };
       services = {
@@ -88,9 +91,9 @@
             };
             "module/battery" = {
               type = "internal/battery";
-              # TODO: make this not hardcoded
               battery = "BAT1";
               adapter = "ACAD";
+              # TODO: "Bat" text is not rendering
               label-charging = "Bat ↑ %percentage%%";
               label-discharging = "Bat ↓ %percentage%%";
             };
@@ -264,31 +267,59 @@
         };
         neovim = {
           enable = true;
-          plugins = with pkgs.vimPlugins; with pkgs.vimUtils; [
-            matchit-zip
-            nerdtree
-            vim-airline
-            vim-airline-themes
-            vim-floaterm
-            vim-polyglot
-            vim-surround
-            fzf-vim
-            (buildVimPlugin {
-              name = "alduin";
-              src = files/alduin;
-            })
-            (buildVimPlugin {
-              name = "searchindex";
-              src = submodules/vim-searchindex;
-            })
-            (buildVimPlugin {
-              name = "bbye";
-              src = submodules/vim-bbye;
-            })
-          ];
+          plugins = with pkgs.vimPlugins;
+            with pkgs.vimUtils; [
+              matchit-zip
+              nerdtree
+              vim-airline
+              vim-airline-themes
+              vim-floaterm
+              vim-polyglot
+              vim-surround
+              fzf-vim
+              (buildVimPlugin {
+                name = "alduin";
+                src = files/alduin;
+              })
+              (buildVimPlugin {
+                name = "searchindex";
+                src = submodules/vim-searchindex;
+              })
+              (buildVimPlugin {
+                name = "bbye";
+                src = submodules/vim-bbye;
+              })
+            ];
           extraConfig = builtins.readFile files/init.vim;
         };
       };
+      gtk = {
+        enable = true;
+        theme = {
+          package = pkgs.arc-theme;
+          name = "Arc-Dark";
+        };
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus-Dark";
+        };
+      };
+      home.file = {
+        ".gdbinit".source = submodules/gdb-dashboard/.gdbinit;
+        ".gdbinit.d/init".text = ''
+          dashboard -layout source variables breakpoints stack threads
+          dashboard -style compact_values False
+          dashboard -style syntax_highlighting 'perldoc'
+          dashboard source -style height 30
+          dashboard variables -style compact False
+          dashboard variables -style align True
+          set history save off'';
+        ".icons/default/index.theme" = ''
+          [Icon Theme]
+          Name=Capitaine Cursors
+          Inherits=capitaine-cursors'';
+      };
+      xresources.properties."Sxiv.background" = "#000000";
     };
   };
 }

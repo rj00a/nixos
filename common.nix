@@ -18,17 +18,19 @@
       dmenu
       fd
       file
+      gdb
       ghc
       git
       gperf
       htop
       jq
       krita
+      lxappearance
       maim
       ncdu
       neofetch
-      neovim
       nixfmt
+      nixops
       noto-fonts
       noto-fonts-cjk
       noto-fonts-extra
@@ -48,20 +50,18 @@
       veracrypt
       wget
       woeusb
+      xclip
       youtube-dl
       zathura
       zip
-      zsh      
+      zsh
     ];
     pathsToLink = [
       "/share/zsh" # zsh completions for system packages.
     ];
   };
 
-  security.sudo = {
-    enable = true;
-    extraConfig = "%wheel ALL=(ALL) NOPASSWD: ALL";
-  };
+  security.sudo.enable = true;
 
   users = {
     defaultUserShell = pkgs.zsh;
@@ -115,6 +115,17 @@
     xkbOptions = "caps:swapescape";
     displayManager.lightdm = {
       enable = true;
+      greeters.gtk = {
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus-Dark";
+        };
+        cursorTheme = {
+          package = pkgs.capitaine-cursors;
+          name = "capitaine-cursors";
+          size = 32;
+        };
+      };
       background = files/wallpaper.jpg;
     };
     # Note: Letting home-manager handle this gave me problems.
@@ -126,14 +137,7 @@
     autoRepeatInterval = 25;
   };
 
-  #programs.zsh = {
-  #  enable = true;
-  #  autosuggestions.enable = true;
-  #  enableCompletion = true;
-  #  histSize = 10000;
-  #  ohMyZsh.enable = true;
-  #  interactiveShellInit = builtins.readFile files/init.zsh;
-  #};
+  programs.dconf.enable = true; # Required for setting gtk theme in home manager.
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

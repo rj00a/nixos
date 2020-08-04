@@ -9,6 +9,10 @@
     wireless.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    jetbrains.idea-community
+  ];
+
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     windowManager.bspwm.configFile = machines/desktop/bspwmrc;
