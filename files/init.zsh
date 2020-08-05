@@ -23,6 +23,9 @@ export TZ=America/Los_Angeles
 # Fixes a bad interaction between intellij and bspwm
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+unset GIT_ASKPASS
+unset SSH_ASKPASS
+
 alias ls='ls -A --color=auto --group-directories-first'
 alias la='ls -lAFh --group-directories-first'
 
