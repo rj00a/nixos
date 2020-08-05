@@ -10,10 +10,11 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
+      arandr
       ascii
       audacity
       bitwarden
-      capitaine-cursors
+      colordiff
       corefonts
       dmenu
       fd
@@ -31,9 +32,6 @@
       neofetch
       nixfmt
       nixops
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-extra
       pandoc
       playerctl
       ripgrep
@@ -59,6 +57,23 @@
     pathsToLink = [
       "/share/zsh" # zsh completions for system packages.
     ];
+  };
+
+  fonts = {
+    fonts = with pkgs; [
+      ubuntu_font_family
+      twitter-color-emoji
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-extra
+      source-code-pro
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts.emoji = [ "Twitter Color Emoji" ];
+      penultimate.enable = true;
+    };
+    enableFontDir = true;
   };
 
   security.sudo.enable = true;
@@ -121,9 +136,8 @@
           name = "Papirus-Dark";
         };
         cursorTheme = {
-          package = pkgs.capitaine-cursors;
-          name = "capitaine-cursors";
-          size = 32;
+          package = pkgs.numix-cursor-theme;
+          name = "Numix-Cursor-Light";
         };
       };
       background = files/wallpaper.jpg;
@@ -135,6 +149,10 @@
     };
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
+    libinput = {
+      enable = true;
+      accelProfile = "flat";
+    };
   };
 
   programs.dconf.enable = true; # Required for setting gtk theme in home manager.

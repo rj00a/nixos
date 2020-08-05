@@ -1,4 +1,4 @@
-PROMPT="%F{7}[%f%B%F{14}%n%f%b@%F{13}%m%f %F{7}%~%f%(?.. %F{9}%?%f)%F{7}]%f "
+PROMPT="%F{7}[%f%F{14}%n%f%b@%F{13}%m%f %F{7}%~%f%(?.. %F{9}%?%f)%F{7}]%f "
 
 # Expand command aliases with tab
 zstyle ':completion:*' completer _expand_alias _complete _ignored
@@ -26,6 +26,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 alias ls='ls -A --color=auto --group-directories-first'
 alias la='ls -lAFh --group-directories-first'
 
+alias diff=colordiff
+
 # Don't cache opened images
 alias sxiv='sxiv -p'
 
@@ -49,6 +51,14 @@ alias mv='mv -i'
 function ccd {
   mkdir -p $1 && cd $1
 }
+
+function em {
+  local res="$(fzf < /etc/nixos/files/emojis.txt)"
+  if [ -n "$res" ]; then
+    printf '%s' "$(echo "$res" | cut -f 1 -d ' ')" | xclip -selection clipboard
+  fi
+}
+
 
 function play {
   local file="$(find /mnt/sda1/{music,films}/ -type f 2> /dev/null | fzf)"
@@ -82,11 +92,3 @@ function playshuf {
   disown
   exit 0
 }
-
-function em {
-  local res="$(fzf < /etc/nixos/files/emojis.txt)"
-  if [ -n "$res" ]; then
-    printf '%s' "$(echo "$res" | cut -f 1 -d ' ')" | xclip -selection clipboard
-  fi
-}
-

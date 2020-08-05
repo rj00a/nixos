@@ -129,8 +129,8 @@ let mapleader = " "
 noremap Y "*y$
 
 " Paste with indent (`] is a special mark)
-noremap p p=`]
-noremap P P=`]
+"noremap p p=`]
+"noremap P P=`]
 
 " Move display lines up/down, rather than actual lines.
 " Useful when line wrap is enabled.
