@@ -40,7 +40,6 @@
               font-0 = "Noto Sans:pixelsize=11;4";
               font-1 = "Ubuntu Mono:pixelsize=11;4";
               font-2 = "Consolas:pixelsize=11;4";
-              font-3 = "Twitter Color Emoji:pixelsize=11;4";
               module-margin = 2;
               padding-left = 2;
               padding-right = 2;
