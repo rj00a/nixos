@@ -26,6 +26,7 @@
   };
 
   home-manager.users.ryan = {
+    programs.alacritty.settings.font.size = 12;
     services.polybar.config."bar/main".monitor = "HDMI-0";
     #home.file = {
     #  ".xinitrc".text = ''
