@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ../../common.nix
     ./hardware-configuration.nix
   ];
 
@@ -12,7 +12,7 @@
     libinput = {
       tapping = false; # Disables tap to click
     };
-    windowManager.bspwm.configFile = machines/laptop/bspwmrc;
+    windowManager.bspwm.configFile = ./bspwmrc;
   };
 
   programs.light.enable = true;
@@ -20,5 +20,7 @@
   users.users.ryan.extraGroups = [
     "video" # For `light`
   ];
+
+  home-manager.users.ryan.programs.alacritty.settings.font.size = 9;
 }
 
