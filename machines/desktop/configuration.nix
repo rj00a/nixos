@@ -6,13 +6,15 @@
 
   networking.hostName = "rjpc";
 
+  fileSystems."/mnt/sdb1".device = "/dev/sdb1";
+
   environment.systemPackages = with pkgs; [
     jetbrains.idea-community
   ];
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    windowManager.bspwm.configFile = machines/desktop/bspwmrc;
+    windowManager.bspwm.configFile = ./bspwmrc;
     wacom.enable = true;
     config = ''
       Section "InputClass"
