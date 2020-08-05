@@ -172,6 +172,8 @@
           enable = true;
           userName = "Ryan Johnson";
           userEmail = "ryanj00a@gmail.com";
+          delta.enable = true;
+          extraConfig.pull.ff = "only";
         };
         alacritty = {
           enable = true;
