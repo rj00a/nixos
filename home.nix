@@ -38,6 +38,9 @@
               foreground = "\${colors.foreground}";
               height = 20;
               font-0 = "Noto Sans:pixelsize=11;4";
+              font-1 = "Ubuntu Mono:pixelsize=11;4";
+              font-2 = "Consolas:pixelsize=11;4";
+              font-3 = "Twitter Color Emoji:pixelsize=11;4";
               module-margin = 2;
               padding-left = 2;
               padding-right = 2;
@@ -82,11 +85,9 @@
               bar-volume-gradient = true;
               bar-volume-indicator = "|";
               bar-volume-indicator-font = 2;
-              #bar-volume-fill = "─";
-              bar-volume-fill = "-";
+              bar-volume-fill = "─";
               bar-volume-fill-font = 2;
-              #bar-volume-empty = "─";
-              bar-volume-empty = "-";
+              bar-volume-empty = "─";
               bar-volume-empty-font = 2;
               bar-volume-empty-foreground = "\${colors.foreground-alt}";
             };
@@ -94,10 +95,8 @@
               type = "internal/battery";
               battery = "BAT1";
               adapter = "ACAD";
-              #label-charging = "Bat ↑ %percentage%%";
-              #label-discharging = "Bat ↓ %percentage%%";
-              label-charging = "Bat ^ %percentage%%";
-              label-discharging = "Bat v %percentage%%";
+              label-charging = "Bat ↑ %percentage%%";
+              label-discharging = "Bat ↓ %percentage%%";
             };
             "module/cpu" = {
               type = "internal/cpu";
@@ -105,24 +104,14 @@
               label = "Cpu %percentage%%";
               format = "<label>  <ramp-coreload>";
               ramp-coreload-spacing = 1;
-              #ramp-coreload-0 = "▁";
-              #ramp-coreload-1 = "▂";
-              #ramp-coreload-2 = "▃";
-              #ramp-coreload-3 = "▄";
-              #ramp-coreload-4 = "▅";
-              #ramp-coreload-5 = "▆";
-              #ramp-coreload-6 = "▇";
-              #ramp-coreload-7 = "█";
-              ramp-coreload-0 = "_";
-              ramp-coreload-1 = "1";
-              ramp-coreload-2 = "2";
-              ramp-coreload-3 = "3";
-              ramp-coreload-4 = "4";
-              ramp-coreload-5 = "5";
-              ramp-coreload-6 = "6";
-              ramp-coreload-7 = "7";
-              ramp-coreload-8 = "8";
-              ramp-coreload-9 = "9";
+              ramp-coreload-0 = "▁";
+              ramp-coreload-1 = "▂";
+              ramp-coreload-2 = "▃";
+              ramp-coreload-3 = "▄";
+              ramp-coreload-4 = "▅";
+              ramp-coreload-5 = "▆";
+              ramp-coreload-6 = "▇";
+              ramp-coreload-7 = "█";
             };
             "module/memory" = {
               type = "internal/memory";
@@ -144,12 +133,10 @@
               bar-indicator = "|";
               bar-indicator-foreground = "#fff";
               bar-indicator-font = 2;
-              #bar-fill = "─";
-              bar-fill = "-";
+              bar-fill = "─";
               bar-fill-font = 2;
               bar-fill-foreground = "#9f78e1";
-              #bar-empty = "─";
-              bar-empty = "-";
+              bar-empty = "─";
               bar-empty-font = 2;
               bar-empty-foreground = "\${colors.foreground-alt}";
             };
@@ -178,7 +165,10 @@
         alacritty = {
           enable = true;
           settings = {
-            font.normal.family = "Ubuntu Mono";
+            font = {
+              normal.family = "Ubuntu Mono";
+              size = 12;
+            };
             colors = {
               primary = {
                 background = "0x000000";
