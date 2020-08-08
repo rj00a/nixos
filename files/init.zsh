@@ -27,9 +27,11 @@ unset GIT_ASKPASS
 unset SSH_ASKPASS
 
 alias ls='ls -A --color=auto --group-directories-first'
-alias la='ls -lAFh --group-directories-first'
+alias la='ls -lAiFh --color=auto --group-directories-first'
 
 alias diff=colordiff
+
+alias tree='tree -C'
 
 # Don't cache opened images
 alias sxiv='sxiv -p'
@@ -64,34 +66,34 @@ function em {
 
 
 function play {
-  local file="$(find /mnt/sda1/{music,films}/ -type f 2> /dev/null | fzf)"
+  local file="$(find /mnt/sdb1/{music,films}/ -type f 2> /dev/null | fzf)"
   if [ -n "$file" ]; then
-    mpv "$file" &
+    mpv --player-operation-mode=pseudo-gui "$file" &
     disown
     exit 0
   fi
 }
 
 function playa {
-  local dir="$(find /mnt/sda1/music/ -type f 2> /dev/null | fzf)"
+  local dir="$(find /mnt/sdb1/music/ -type d 2> /dev/null | fzf)"
   if [ -z "$dir" ]; then
     return
   fi
-  local trax="$(python -B /etc/nixos/files/trackord.py "$dir")"
+  local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
   if [ -z "$trax" ]; then
     return
   fi
-  mpv $trax &
+  mpv --player-operation-mode=pseudo-gui ${(f)trax} &
   disown
   exit 0
 }
 
 function playshuf {
-  local dir="$(find /mnt/sda1/music/ -type d 2> /dev/null | fzf)"
+  local dir="$(find /mnt/sdb1/music/ -type d 2> /dev/null | fzf)"
   if [ -z "$dir" ]; then
     return
   fi
-  mpv $(shuf -e "$dir"/*) &
+  mpv --player-operation-mode=pseudo-gui $(shuf -e "$dir"/*) &
   disown
   exit 0
 }

@@ -18,6 +18,7 @@
       corefonts
       dmenu
       fd
+      ffmpeg
       file
       gdb
       ghc
@@ -32,8 +33,10 @@
       neofetch
       nixfmt
       nixops
+      nmap
       pandoc
       playerctl
+      python3
       ripgrep
       scc
       shellcheck
@@ -155,7 +158,8 @@
     };
   };
 
-  programs.dconf.enable = true; # Required for setting gtk theme in home manager.
+  programs.dconf.enable =
+    true; # Required for setting gtk theme in home manager.
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

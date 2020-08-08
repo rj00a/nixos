@@ -9,7 +9,13 @@
   fileSystems."/mnt/sdb1".device = "/dev/sdb1";
 
   environment.systemPackages = with pkgs; [
+    multimc
     jetbrains.idea-community
+    jdk
+    metals
+    scala
+    gradle
+    qemu
   ];
 
   services.xserver = {
@@ -28,15 +34,26 @@
   };
 
   home-manager.users.ryan = {
-    programs.alacritty.settings.font.size = 12;
+    programs = {
+      alacritty.settings.font.size = 12;
+      #vscode = {
+      #  enable = true;
+      #  package = pkgs.vscodium;
+      #  extensions = with pkgs.vscode-extensions; [
+      #    redhat.vscode-yaml
+      #    matklad.rust-analyzer
+      #    vscodevim.vim
+      #  ];
+      #  # TODO: Enable haskell
+      #  # TODO: Settings
+      #};
+    };
     services.polybar.config."bar/main".monitor = "HDMI-0";
-    #home.file = {
-    #  ".xinitrc".text = ''
-    #    # Generated with the help of `arandr`
-    #    # (--rate sets the refresh rate)
-    #    xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --rate 144 --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal
-    #    # vim: set ft=sh'';
-    #};
+    home.file = {
+      ".ideavimrc".text = ''
+        set so=999
+        set ideajoin'';
+    };
   };
 
 }

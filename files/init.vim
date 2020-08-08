@@ -140,7 +140,7 @@ nnoremap k gk
 vnoremap k gk
 
 " Clear search buffer.
-nnoremap <silent> <cr> :noh<cr>
+nnoremap <silent> <esc> :noh<cr>
 
 " Disable the annoying message in the command line when using Ctrl-c.
 nnoremap <c-c> <silent> <c-c>
