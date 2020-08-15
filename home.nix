@@ -293,6 +293,7 @@
               })
             ];
           extraConfig = builtins.readFile files/init.vim;
+          vimAlias = true;
         };
       };
       gtk = {

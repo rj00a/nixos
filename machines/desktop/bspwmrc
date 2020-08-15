@@ -1,13 +1,9 @@
 #!/usr/bin/env sh
 
-. /etc/nixos/files/bspwmrc-common.sh
+/etc/nixos/files/bspwmrc-common.sh
 
 bspc monitor DVI-D-0 -d 1 2 3
 bspc monitor HDMI-0 -d 4 5 6
-
-# Generated with the help of `arandr`
-# (--rate sets the refresh rate)
-xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --rate 144 --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal &
 
 xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'libinput Accel Speed' -0.3 &
 

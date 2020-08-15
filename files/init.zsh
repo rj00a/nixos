@@ -59,14 +59,14 @@ function ccd {
 
 function em {
   local res="$(fzf < /etc/nixos/files/emojis.txt)"
-  if [ -n "$res" ]; then
+  if [ "$res" ]; then
     printf '%s' "$(echo "$res" | cut -f 1 -d ' ')" | xclip -selection clipboard
   fi
 }
 
 
 function play {
-  local file="$(find /mnt/sdb1/{music,films}/ -type f 2> /dev/null | fzf)"
+  local file="$(find /mnt/sda1/{music,films}/ -type f 2> /dev/null | fzf)"
   if [ -n "$file" ]; then
     mpv --player-operation-mode=pseudo-gui "$file" &
     disown
@@ -75,25 +75,24 @@ function play {
 }
 
 function playa {
-  local dir="$(find /mnt/sdb1/music/ -type d 2> /dev/null | fzf)"
-  if [ -z "$dir" ]; then
-    return
+  local dir="$(find /mnt/sda1/music/ -type d 2> /dev/null | fzf)"
+  if [ "$dir" ]; then
+    local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
+    if [ "$trax" ]; then
+      mpv --player-operation-mode=pseudo-gui ${(f)trax} &
+      disown
+      exit 0
+    fi
   fi
-  local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
-  if [ -z "$trax" ]; then
-    return
-  fi
-  mpv --player-operation-mode=pseudo-gui ${(f)trax} &
-  disown
-  exit 0
 }
 
 function playshuf {
-  local dir="$(find /mnt/sdb1/music/ -type d 2> /dev/null | fzf)"
-  if [ -z "$dir" ]; then
-    return
+  local dir="$(find /mnt/sda1/music/ -type d 2> /dev/null | fzf)"
+  if [ "$dir" ]; then
+    local trax=$(shuf -e "$dir"/*)
+    mpv --player-operation-mode=pseudo-gui ${(f)trax} &
+    disown
+    exit 0
   fi
-  mpv --player-operation-mode=pseudo-gui $(shuf -e "$dir"/*) &
-  disown
-  exit 0
 }
+

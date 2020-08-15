@@ -23,16 +23,18 @@
       gdb
       ghc
       git
+      git-lfs
+      gnumake
       gperf
       htop
       jq
       krita
+      lshw
       lxappearance
       maim
       ncdu
       neofetch
       nixfmt
-      nixops
       nmap
       pandoc
       playerctl
@@ -40,7 +42,6 @@
       ripgrep
       scc
       shellcheck
-      steam
       strace
       sxiv
       trash-cli
@@ -52,6 +53,7 @@
       wget
       woeusb
       xclip
+      xfce.thunar
       youtube-dl
       zathura
       zip
@@ -78,8 +80,6 @@
     };
     enableFontDir = true;
   };
-
-  security.sudo.enable = true;
 
   users = {
     defaultUserShell = pkgs.zsh;

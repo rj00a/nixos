@@ -126,7 +126,7 @@ hi Cursor guifg=#000000 guibg=#ff0000 ctermfg=0 ctermbg=9
 let mapleader = " "
 
 " Makes Y consistent with C and D
-noremap Y "*y$
+noremap Y y$
 
 " Paste with indent (`] is a special mark)
 "noremap p p=`]
