@@ -6,7 +6,7 @@
 
   networking.hostName = "rjpc";
 
-  fileSystems."/mnt/sda1".device = "/dev/sda1";
+  fileSystems."/mnt/bulk".device = "/dev/disk/by-label/Bulk";
 
   environment.systemPackages = with pkgs; [
     steam
@@ -21,7 +21,7 @@
 
   virtualisation.virtualbox.host = {
     enable = true;
-    #headless = true;
+    headless = true;
   };
 
   users.users.ryan.extraGroups = [ "vboxusers" ];

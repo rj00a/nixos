@@ -66,7 +66,7 @@ function em {
 
 
 function play {
-  local file="$(find /mnt/sda1/{music,films}/ -type f 2> /dev/null | fzf)"
+  local file="$(find /mnt/bulk/{music,films}/ -type f 2> /dev/null | fzf)"
   if [ -n "$file" ]; then
     mpv --player-operation-mode=pseudo-gui "$file" &
     disown
@@ -75,7 +75,7 @@ function play {
 }
 
 function playa {
-  local dir="$(find /mnt/sda1/music/ -type d 2> /dev/null | fzf)"
+  local dir="$(find /mnt/bulk/music/ -type d 2> /dev/null | fzf)"
   if [ "$dir" ]; then
     local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
     if [ "$trax" ]; then
@@ -87,7 +87,7 @@ function playa {
 }
 
 function playshuf {
-  local dir="$(find /mnt/sda1/music/ -type d 2> /dev/null | fzf)"
+  local dir="$(find /mnt/bulk/music/ -type d 2> /dev/null | fzf)"
   if [ "$dir" ]; then
     local trax=$(shuf -e "$dir"/*)
     mpv --player-operation-mode=pseudo-gui ${(f)trax} &

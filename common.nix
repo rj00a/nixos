@@ -10,10 +10,11 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      arandr
       ascii
       audacity
       bitwarden
+      cabal-install
+      cabal2nix
       colordiff
       corefonts
       dmenu
@@ -23,8 +24,6 @@
       gdb
       ghc
       git
-      git-lfs
-      gnumake
       gperf
       htop
       jq
@@ -44,6 +43,7 @@
       shellcheck
       strace
       sxiv
+      traceroute
       trash-cli
       tree
       unrar
