@@ -320,6 +320,9 @@
         ".icons/default/index.theme".text = ''
           [Icon Theme]
           Inherits=Numix-Cursor-Light'';
+        ".config/nixpkgs/config.nix".text = ''
+          { allowUnfree = true; }
+        '';
       };
       xresources.properties."Sxiv.background" = "#000000";
     };

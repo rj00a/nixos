@@ -16,7 +16,8 @@
       cabal-install
       cabal2nix
       colordiff
-      corefonts
+      #corefonts #TODO: hash mismatch
+      discord
       dmenu
       fd
       ffmpeg
@@ -26,6 +27,7 @@
       git
       gperf
       htop
+      imagemagick
       jq
       krita
       lshw
@@ -36,6 +38,7 @@
       nixfmt
       nmap
       pandoc
+      perl # fzf-history-widget complains if this isn't available.
       playerctl
       python3
       ripgrep
@@ -64,19 +67,19 @@
     ];
   };
 
+  # TODO: Emojis are still screwed up.
   fonts = {
     fonts = with pkgs; [
       ubuntu_font_family
       twitter-color-emoji
       noto-fonts
-      noto-fonts-cjk
-      noto-fonts-extra
-      source-code-pro
+      #noto-fonts-cjk
+      #noto-fonts-extra
+      #source-code-pro
     ];
     fontconfig = {
       enable = true;
       defaultFonts.emoji = [ "Twitter Color Emoji" ];
-      penultimate.enable = true;
     };
     enableFontDir = true;
   };
@@ -106,24 +109,25 @@
     size = 8192;
   }];
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
 
-  # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [
+      pkgs.hplip # Driver for HP printers.
+    ];
+  };
 
-  # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 

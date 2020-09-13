@@ -53,6 +53,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias update='/etc/nixos/update.sh'
+
 function ccd {
   mkdir -p $1 && cd $1
 }

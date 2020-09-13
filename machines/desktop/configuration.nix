@@ -16,7 +16,7 @@
     metals
     scala
     gradle
-    nixops
+    kubernetes
   ];
 
   virtualisation.virtualbox.host = {
