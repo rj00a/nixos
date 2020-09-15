@@ -89,6 +89,7 @@
     # Don't forget to set a password with ‘passwd’.
     users.ryan = {
       isNormalUser = true;
+      # wheel is for sudo.
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };
