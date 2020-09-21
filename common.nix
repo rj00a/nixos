@@ -19,6 +19,7 @@
       #corefonts #TODO: hash mismatch
       discord
       dmenu
+      exif
       fd
       ffmpeg
       file

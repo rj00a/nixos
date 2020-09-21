@@ -13,11 +13,13 @@
     multimc
     jetbrains.idea-community
     jdk
-    metals
+    #metals
     scala
     gradle
+    sbt
     docker
     kubernetes
+    minikube
   ];
 
   virtualisation.docker.enable = true;
