@@ -1,15 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ../../common.nix
-    ./hardware-configuration.nix
-  ];
+  imports = [ ../../common.nix ./hardware-configuration.nix ];
 
   networking.hostName = "rjlaptop";
 
   services.xserver = {
     libinput = {
+      enable = true;
       tapping = false; # Disables tap to click
     };
     windowManager.bspwm.configFile = ./bspwmrc;

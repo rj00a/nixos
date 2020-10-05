@@ -43,6 +43,7 @@
       playerctl
       python3
       ripgrep
+      rustup
       scc
       shellcheck
       strace
@@ -62,13 +63,60 @@
       zathura
       zip
       zsh
+      (vscode-with-extensions.override {
+        vscodeExtensions = with vscode-extensions;
+          [
+            matklad.rust-analyzer
+            vadimcn.vscode-lldb
+            vscodevim.vim
+            ms-kubernetes-tools.vscode-kubernetes-tools
+            redhat.vscode-yaml
+            bbenoist.Nix
+          ] ++ vscode-utils.extensionsFromVscodeMarketplace [
+            {
+              name = "theme-dracula";
+              publisher = "dracula-theme";
+              version = "2.22.1";
+              sha256 =
+                "517f5e96a8393e3c8d3f7b0ef30e2df0ff00b9d77167b2705c61a5a9bcdaa88f";
+            }
+            {
+              name = "nixfmt-vscode";
+              publisher = "brettm12345";
+              version = "0.0.1";
+              sha256 =
+                "f3282540351cd025c6d84322dbf1d70c9b31997278607be33634cc9d0c2b831f";
+            }
+            {
+              name = "nix-env-selector";
+              publisher = "arrterian";
+              version = "0.1.2";
+              sha256 =
+                "693371af5b1a51a37d23cd946020ec42f1fd5015a3b9efc14a75263103a7b1d8";
+            }
+            {
+              name = "material-icon-theme";
+              publisher = "pkief";
+              version = "4.3.0";
+              sha256 =
+                "3020202de6f572528f7c194b7c74f5d7c242cd9e27f44239bd8cb4076b9bc9a8";
+            }
+            {
+              name = "shellcheck";
+              publisher = "timonwong";
+              version = "0.11.0";
+              sha256 =
+                "b332f80ebb8b7dafc14c157d95b3c90436d5c98bfc7a165d4760e893abd71049";
+            }
+          ];
+      })
     ];
     pathsToLink = [
       "/share/zsh" # zsh completions for system packages.
     ];
   };
 
-  # TODO: Emojis are still screwed up.
+  # TODO: Emojis are a mix of flat colorless and twitter ones.
   fonts = {
     fonts = with pkgs; [
       ubuntu_font_family
@@ -158,10 +206,6 @@
     };
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
-    libinput = {
-      enable = true;
-      accelProfile = "flat";
-    };
   };
 
   programs.dconf.enable =

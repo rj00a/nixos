@@ -55,6 +55,8 @@ alias mv='mv -i'
 
 alias update='/etc/nixos/update.sh'
 
+alias code-stdenv="nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = \"code-env\"; }' --run code"
+
 function ccd {
   mkdir -p $1 && cd $1
 }

@@ -11,12 +11,9 @@
   environment.systemPackages = with pkgs; [
     steam
     multimc
-    jetbrains.idea-community
     jdk
-    #metals
     scala
     gradle
-    sbt
     docker
     kubernetes
     minikube
@@ -28,6 +25,12 @@
 
   services = {
     xserver = {
+
+      libinput = {
+        enable = true;
+        accelProfile = "flat";
+      };
+
       videoDrivers = [ "nvidia" ];
       windowManager.bspwm.configFile = ./bspwmrc;
       wacom.enable = true;
@@ -47,6 +50,7 @@
         --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal &
       '';
     };
+    # Also needed for git askpass
     openssh = {
       enable = true;
       # Can only ssh into this machine from the localhost.
@@ -54,33 +58,20 @@
         addr = "localhost";
         port = 22;
       }];
-      permitRootLogin = "yes";
+      #permitRootLogin = "yes";
     };
   };
 
   home-manager.users.ryan = {
-    programs = {
-      alacritty.settings.font.size = 12;
-      #vscode = {
-      #  enable = true;
-      #  package = pkgs.vscodium;
-      #  extensions = with pkgs.vscode-extensions; [
-      #    redhat.vscode-yaml
-      #    matklad.rust-analyzer
-      #    vscodevim.vim
-      #  ];
-      #  # TODO: Enable haskell
-      #  # TODO: Settings
-      #};
-    };
-    home.file = {
-      ".ideavimrc".text = ''
-        set so=999
-        set ideajoin
-        set clipboard+=unnamedplus
-        noremap Y y$
-      '';
-    };
+    programs = { alacritty.settings.font.size = 12; };
+    #home.file = {
+    #  ".ideavimrc".text = ''
+    #    set so=999
+    #    set ideajoin
+    #    set clipboard+=unnamedplus
+    #    noremap Y y$
+    #  '';
+    #};
   };
 
 }

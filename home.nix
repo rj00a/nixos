@@ -241,18 +241,13 @@
           oh-my-zsh = {
             enable = true;
             plugins = [
-              "aws"
               "cargo"
               "colored-man-pages"
-              "common-aliases"
               "git"
               "ripgrep"
               "rsync"
               "rust"
               "rustup"
-              "sbt"
-              "scala"
-              "screen"
             ];
           };
           plugins = [
@@ -307,6 +302,7 @@
           name = "Papirus-Dark";
         };
       };
+      # TODO: add vscode settings.json and keybindings.json
       home.file = {
         ".gdbinit".source = submodules/gdb-dashboard/.gdbinit;
         ".gdbinit.d/init".text = ''
