@@ -87,13 +87,13 @@
               sha256 =
                 "f3282540351cd025c6d84322dbf1d70c9b31997278607be33634cc9d0c2b831f";
             }
-            {
-              name = "nix-env-selector";
-              publisher = "arrterian";
-              version = "0.1.2";
-              sha256 =
-                "693371af5b1a51a37d23cd946020ec42f1fd5015a3b9efc14a75263103a7b1d8";
-            }
+            #{
+            #  name = "nix-env-selector";
+            #  publisher = "arrterian";
+            #  version = "0.1.2";
+            #  sha256 =
+            #    "693371af5b1a51a37d23cd946020ec42f1fd5015a3b9efc14a75263103a7b1d8";
+            #}
             {
               name = "material-icon-theme";
               publisher = "pkief";
@@ -107,6 +107,18 @@
               version = "0.11.0";
               sha256 =
                 "b332f80ebb8b7dafc14c157d95b3c90436d5c98bfc7a165d4760e893abd71049";
+            }
+            {
+              name = "toml";
+              publisher = "be5invis";
+              version = "0.5.1";
+              sha256 = "5260ce315efba71a8648e0d445fc0c6dc597fa1a7af5a4226c39178ef3343ee4";
+            }
+            {
+              name = "vscode-todo-highlight";
+              publisher = "wayou";
+              version = "1.0.4";
+              sha256 = "39d3dc40d66fe79bf630691c7170f4aa68261ad5e7992e80d9572363562e2269";
             }
           ];
       })

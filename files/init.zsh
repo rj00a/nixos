@@ -55,13 +55,15 @@ alias mv='mv -i'
 
 alias update='/etc/nixos/update.sh'
 
+alias backup='/etc/nixos/backup.sh'
+
 alias code-stdenv="nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = \"code-env\"; }' --run code"
 
-function ccd {
+ccd() {
   mkdir -p $1 && cd $1
 }
 
-function em {
+em() {
   local res="$(fzf < /etc/nixos/files/emojis.txt)"
   if [ "$res" ]; then
     printf '%s' "$(echo "$res" | cut -f 1 -d ' ')" | xclip -selection clipboard
@@ -69,7 +71,7 @@ function em {
 }
 
 
-function play {
+play() {
   local file="$(find /mnt/bulk/{music,films}/ -type f 2> /dev/null | fzf)"
   if [ -n "$file" ]; then
     mpv --player-operation-mode=pseudo-gui "$file" &
@@ -78,7 +80,7 @@ function play {
   fi
 }
 
-function playa {
+playa() {
   local dir="$(find /mnt/bulk/music/ -type d 2> /dev/null | fzf)"
   if [ "$dir" ]; then
     local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
@@ -90,7 +92,7 @@ function playa {
   fi
 }
 
-function playshuf {
+playshuf() {
   local dir="$(find /mnt/bulk/music/ -type d 2> /dev/null | fzf)"
   if [ "$dir" ]; then
     local trax=$(shuf -e "$dir"/*)

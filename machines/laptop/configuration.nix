@@ -10,6 +10,9 @@
       enable = true;
       tapping = false; # Disables tap to click
     };
+
+    logind.lidSwitch = "ignore";
+
     windowManager.bspwm.configFile = ./bspwmrc;
   };
 

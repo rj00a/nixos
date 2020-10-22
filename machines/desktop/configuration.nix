@@ -6,7 +6,10 @@
 
   networking.hostName = "rjpc";
 
-  fileSystems."/mnt/bulk".device = "/dev/disk/by-label/Bulk";
+  fileSystems = {
+    "/mnt/bulk".device = "/dev/disk/by-label/Bulk";
+    "/mnt/shared".device = "/dev/disk/by-label/SHARED";
+  };
 
   environment.systemPackages = with pkgs; [
     steam
