@@ -54,6 +54,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias update='/etc/nixos/update.sh'
+alias collect-garbage='/etc/nixos/collect-garbage.sh'
 
 alias backup='/etc/nixos/backup.sh'
 
