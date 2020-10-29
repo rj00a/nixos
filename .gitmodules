@@ -13,6 +13,3 @@
 [submodule "submodules/vim-bbye"]
 	path = submodules/vim-bbye
 	url = https://github.com/moll/vim-bbye.git
-[submodule "submodules/gdb-dashboard"]
-	path = submodules/gdb-dashboard
-	url = https://github.com/cyrus-and/gdb-dashboard.git
