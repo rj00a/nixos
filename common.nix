@@ -62,6 +62,7 @@
       zip
       zsh
       (vscode-with-extensions.override {
+        # TODO: Declare settings and keybindings.
         vscodeExtensions = with vscode-extensions;
           [
             matklad.rust-analyzer
@@ -451,7 +452,7 @@
           enable = true;
           enableZshIntegration = true;
         };
-        mpv = { # TODO
+        mpv = {
           enable = true;
           config = {
             profile = "gpu-hq";
@@ -530,15 +531,15 @@
       };
       # TODO: add vscode settings.json and keybindings.json
       home.file = {
-        ".gdbinit".source = submodules/gdb-dashboard/.gdbinit;
-        ".gdbinit.d/init".text = ''
-          dashboard -layout source variables breakpoints stack threads
-          dashboard -style compact_values False
-          dashboard -style syntax_highlighting 'perldoc'
-          dashboard source -style height 30
-          dashboard variables -style compact False
-          dashboard variables -style align True
-          set history save off'';
+        #".gdbinit".source = submodules/gdb-dashboard/.gdbinit;
+        #".gdbinit.d/init".text = ''
+        #  dashboard -layout source variables breakpoints stack threads
+        #  dashboard -style compact_values False
+        #  dashboard -style syntax_highlighting 'perldoc'
+        #  dashboard source -style height 30
+        #  dashboard variables -style compact False
+        #  dashboard variables -style align True
+        #  set history save off'';
         ".icons/default/index.theme".text = ''
           [Icon Theme]
           Inherits=Numix-Cursor-Light'';
