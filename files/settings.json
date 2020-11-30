@@ -1,0 +1,81 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
+    "editor.folding": false,
+    "editor.renderIndentGuides": false,
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    },
+    "files.autoSave": "afterDelay",
+    "vim.changeWordIncludesWhitespace": true,
+    "vim.gdefault": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "escape"
+            ],
+            "commands": [
+                ":noh"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "vim.useSystemClipboard": true,
+    "workbench.colorTheme": "Dracula",
+    "window.zoomLevel": 0,
+    "window.titleBarStyle": "custom",
+    "editor.cursorSurroundingLines": 2,
+    "explorer.confirmDragAndDrop": false,
+    "todohighlight.keywords": [
+        {
+            "text": "TODO",
+            "color": "black",
+            "backgroundColor": "#00a700"
+        },
+        {
+            "text": "FIXME",
+            "color": "black",
+            "backgroundColor": "#00a700"
+        },
+        {
+            "text": "XXX",
+            "color": "black",
+            "backgroundColor": "#00a700"
+        }
+    ],
+    "update.mode": "none",
+    "editor.fontSize": 14,
+    //"editor.lineHeight": 16,
+    "editor.smoothScrolling": false,
+    "git.autofetch": false,
+    "workbench.iconTheme": "material-icon-theme",
+    // Prevent keybindings from conflicting with the integrated terminal.
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen",
+        "-workbench.action.files.newUntitledFile"
+    ],
+    "editor.minimap.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+}

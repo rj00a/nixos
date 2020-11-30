@@ -3,6 +3,12 @@ PROMPT="%F{7}[%f%F{14}%n%f%b@%F{13}%m%f %F{7}%~%f%(?.. %F{9}%?%f)%F{7}]%f "
 # Expand command aliases with tab
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 
+# Allows you to do `^foo*` to exclude `foo` from a glob, for instance.
+setopt extendedglob
+
+# Set terminal tabstop to 4.
+tabs 4
+
 export VISUAL=nvim
 export EDITOR=nvim
 export BROWSER=chromium
@@ -53,10 +59,9 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-alias update='/etc/nixos/update.sh'
-alias collect-garbage='/etc/nixos/collect-garbage.sh'
-
-alias backup='/etc/nixos/backup.sh'
+alias update='/etc/nixos/files/update.sh'
+alias collect-garbage='/etc/nixos/files/collect-garbage.sh'
+alias backup='/etc/nixos/files/backup.sh'
 
 alias code-stdenv="nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = \"code-env\"; }' --run code"
 alias code-nix-shell="nix-shell --run 'code .'"
@@ -76,7 +81,7 @@ em() {
 play() {
   local file="$(find /mnt/bulk/{music,films}/ -type f 2> /dev/null | fzf)"
   if [ -n "$file" ]; then
-    mpv --player-operation-mode=pseudo-gui "$file" &
+    mpv --player-operation-mode=pseudo-gui --keep-open=yes "$file" &
     disown
     exit 0
   fi
@@ -87,7 +92,7 @@ playa() {
   if [ "$dir" ]; then
     local trax="$(python -B /etc/nixos/files/trackord.py "$dir"/*)"
     if [ "$trax" ]; then
-      mpv --player-operation-mode=pseudo-gui ${(f)trax} &
+      mpv --player-operation-mode=pseudo-gui --keep-open=yes ${(f)trax} &
       disown
       exit 0
     fi

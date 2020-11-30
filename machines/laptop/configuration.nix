@@ -3,6 +3,9 @@
 {
   imports = [ ../../common.nix ./hardware-configuration.nix ];
 
+  environment.systemPackages = with pkgs;
+    [ (import ../../files/vscode.nix { inherit pkgs; }) ];
+
   networking.hostName = "rjlaptop";
 
   services.xserver = {

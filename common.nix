@@ -3,6 +3,8 @@
 
 { config, pkgs, ... }:
 
+#let pkgs = import submodules/nixpkgs/nixos {}; in
+
 {
   imports = [ (import submodules/home-manager/nixos) ];
 
@@ -13,8 +15,9 @@
       ascii
       audacity
       bitwarden
+      cargo
       colordiff
-      #corefonts #TODO: hash mismatch
+      corefonts
       discord
       dmenu
       exif
@@ -40,11 +43,13 @@
       playerctl
       python3
       ripgrep
-      rustup
+      rustc
+      rustfmt
       scc
       shellcheck
       strace
       sxiv
+      tealdeer
       traceroute
       trash-cli
       tree
@@ -61,70 +66,6 @@
       zathura
       zip
       zsh
-      (vscode-with-extensions.override {
-        # TODO: Declare settings and keybindings.
-        vscodeExtensions = with vscode-extensions;
-          [
-            matklad.rust-analyzer
-            # TODO: This doesn't build D:
-            #vadimcn.vscode-lldb
-            vscodevim.vim
-            ms-kubernetes-tools.vscode-kubernetes-tools
-            redhat.vscode-yaml
-            bbenoist.Nix
-          ] ++ vscode-utils.extensionsFromVscodeMarketplace [
-            # TODO: Make my own theme based on alduin
-            {
-              name = "theme-dracula";
-              publisher = "dracula-theme";
-              version = "2.22.1";
-              sha256 =
-                "517f5e96a8393e3c8d3f7b0ef30e2df0ff00b9d77167b2705c61a5a9bcdaa88f";
-            }
-            {
-              name = "nixfmt-vscode";
-              publisher = "brettm12345";
-              version = "0.0.1";
-              sha256 =
-                "f3282540351cd025c6d84322dbf1d70c9b31997278607be33634cc9d0c2b831f";
-            }
-            {
-              name = "material-icon-theme";
-              publisher = "pkief";
-              version = "4.3.0";
-              sha256 =
-                "3020202de6f572528f7c194b7c74f5d7c242cd9e27f44239bd8cb4076b9bc9a8";
-            }
-            {
-              name = "shellcheck";
-              publisher = "timonwong";
-              version = "0.12.1";
-              sha256 =
-                "e27f052ac1be3f9a1384a5958baf775836d8f957640bbf8d2f53b60a925efb2a";
-            }
-            {
-              name = "toml";
-              publisher = "be5invis";
-              version = "0.5.1";
-              sha256 =
-                "5260ce315efba71a8648e0d445fc0c6dc597fa1a7af5a4226c39178ef3343ee4";
-            }
-            {
-              name = "vscode-todo-highlight";
-              publisher = "wayou";
-              version = "1.0.4";
-              sha256 =
-                "39d3dc40d66fe79bf630691c7170f4aa68261ad5e7992e80d9572363562e2269";
-            }
-            {
-              name = "vscode-docker";
-              publisher = "ms-azuretools";
-              version = "1.7.0";
-              sha256 =
-                "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
-            }
-          ];
-      })
     ];
     pathsToLink = [
       "/share/zsh" # zsh completions for system packages.
@@ -154,6 +95,11 @@
     };
   };
 
+  # Make sudo not timeout waiting for a passwd.
+  security.sudo.extraConfig = ''
+    Defaults passwd_timeout=0
+  '';
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -182,6 +128,14 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nix = {
+    #package = pkgs.nixFlakes;
+    autoOptimiseStore = true;
+    #extraOptions = ''
+    #  experimental-features = nix-command flakes
+    #'';
+  };
+
   services.printing = {
     enable = true;
     drivers = [
@@ -196,6 +150,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
+    # Swap caps lock and escape
     xkbOptions = "caps:swapescape";
     displayManager.lightdm = {
       enable = true;
@@ -211,7 +166,6 @@
       };
       background = files/wallpaper.jpg;
     };
-    # Note: Letting home-manager handle this gave me problems.
     windowManager.bspwm = {
       enable = true;
       sxhkd.configFile = files/sxhkdrc;
@@ -236,6 +190,19 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ryan = {
+      home.file = {
+        ".icons/default/index.theme".text = ''
+          [Icon Theme]
+          Inherits=Numix-Cursor-Light'';
+
+        ".config/nixpkgs/config.nix".text = ''
+          { allowUnfree = true; }
+        '';
+
+        ".config/Code/User/settings.json".source = files/settings.json;
+
+        ".config/Code/User/keybindings.json".source = files/keybindings.json;
+      };
       xsession = {
         pointerCursor = {
           package = pkgs.numix-cursor-theme;
@@ -427,20 +394,7 @@
             };
           };
         };
-        chromium = {
-          enable = true;
-          #extensions = [
-          #  "ajopnjidmegmdimjlfnijceegpefgped" # BetterTTV
-          #  "ghbmnnjooekpmoecnnnilnnbdlolhkhi" # Google Docs Offline
-          #  "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
-          #  "chphlpgkkbolifaimnlloiipkdnihall" # OneTab
-          #  "oeehccpigolildhagkmlpofjplfajiam" # Reddit Comments for YouTube
-          #  "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancement Suite
-          #  "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-          #  "pgdnlhfefecpicbbihgmbmffkjpaplco" # uBlock Origin Extra
-          #  "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-          #];
-        };
+        chromium.enable = true;
         htop = {
           enable = true;
           hideThreads = true;
@@ -467,15 +421,7 @@
           autocd = true;
           oh-my-zsh = {
             enable = true;
-            plugins = [
-              "cargo"
-              "colored-man-pages"
-              "git"
-              "ripgrep"
-              "rsync"
-              "rust"
-              "rustup"
-            ];
+            plugins = [ "cargo" "colored-man-pages" "ripgrep" "rsync" "rust" ];
           };
           plugins = [
             {
@@ -528,24 +474,6 @@
           package = pkgs.papirus-icon-theme;
           name = "Papirus-Dark";
         };
-      };
-      # TODO: add vscode settings.json and keybindings.json
-      home.file = {
-        #".gdbinit".source = submodules/gdb-dashboard/.gdbinit;
-        #".gdbinit.d/init".text = ''
-        #  dashboard -layout source variables breakpoints stack threads
-        #  dashboard -style compact_values False
-        #  dashboard -style syntax_highlighting 'perldoc'
-        #  dashboard source -style height 30
-        #  dashboard variables -style compact False
-        #  dashboard variables -style align True
-        #  set history save off'';
-        ".icons/default/index.theme".text = ''
-          [Icon Theme]
-          Inherits=Numix-Cursor-Light'';
-        ".config/nixpkgs/config.nix".text = ''
-          { allowUnfree = true; }
-        '';
       };
       xresources.properties."Sxiv.background" = "#000000";
     };
