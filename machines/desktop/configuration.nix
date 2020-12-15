@@ -8,15 +8,34 @@
     let
       my-vscode = import ../../files/vscode.nix {
         inherit pkgs;
-        extra-extensions =
-          [ vscode-extensions.ms-kubernetes-tools.vscode-kubernetes-tools ]
-          ++ vscode-utils.extensionsFromVscodeMarketplace [{
-            name = "vscode-docker";
-            publisher = "ms-azuretools";
-            version = "1.7.0";
-            sha256 =
-              "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
-          }];
+        extra-extensions = with vscode-extensions;
+          [
+            ms-kubernetes-tools.vscode-kubernetes-tools
+            scala-lang.scala
+            haskell.haskell
+          ] ++ vscode-utils.extensionsFromVscodeMarketplace [
+            {
+              name = "vscode-docker";
+              publisher = "ms-azuretools";
+              version = "1.7.0";
+              sha256 =
+                "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
+            }
+            {
+              name = "dotty";
+              publisher = "lampepfl";
+              version = "0.1.16";
+              sha256 =
+                "0a331a49e76d90d326c7c05b2b003cb0c41764769815c76b3569439d991ee4d5";
+            }
+            {
+              name = "language-haskell";
+              publisher = "justusadam";
+              version = "3.3.0";
+              sha256 = 
+                "dab96899ce2a8dc6b532fe65c604ffe00011cee1bc7b8920b2189e96905e0589";
+            }
+          ];
       };
       scala3 = stdenv.mkDerivation rec {
         version = "3.0.0-M2";
@@ -38,7 +57,19 @@
           done
         '';
       };
-    in [ steam multimc my-vscode scala3 jdk sbt kubernetes minikube ];
+    in [
+      steam
+      multimc
+      my-vscode
+      scala3
+      scalafmt
+      jdk
+      sbt
+      kubernetes
+      minikube
+      ghc
+      cabal-install
+    ];
 
   networking.hostName = "rjpc";
 

@@ -24,7 +24,6 @@
       fd
       ffmpeg
       file
-      ghc
       git
       gperf
       htop

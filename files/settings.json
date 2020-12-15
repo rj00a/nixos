@@ -78,4 +78,8 @@
     "editor.minimap.enabled": false,
     "workbench.editor.enablePreview": false,
     "extensions.showRecommendationsOnlyOnDemand": true,
+    "[haskell]": {
+        "editor.tabSize": 2
+    }
 }
+
