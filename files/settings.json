@@ -45,7 +45,7 @@
     "workbench.colorTheme": "Dracula",
     "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
-    "editor.cursorSurroundingLines": 2,
+    "editor.cursorSurroundingLines": 999,
     "explorer.confirmDragAndDrop": false,
     "todohighlight.keywords": [
         {

@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs;
     let
-      my-vscode = import ../../files/vscode.nix {
+      my-vscode = import ../../nix/vscode.nix {
         inherit pkgs;
         extra-extensions = with vscode-extensions;
           [
@@ -38,13 +38,12 @@
           ];
       };
       scala3 = stdenv.mkDerivation rec {
-        version = "3.0.0-M2";
+        version = "3.0.0-M3";
         pname = "scala3";
         src = fetchurl {
           url =
             "https://github.com/lampepfl/dotty/releases/download/${version}/scala3-${version}.tar.gz";
-          sha256 =
-            "ec71104112749d0efdf1127f9c2ce9722f732181518be7e983a9f754a698c281";
+          sha256 = "1ca46231ee8abea770c1328c99010475efa9f2be5faf5c5ce9b8fb8c40345f94";
         };
         buildInputs = [ jre ncurses.dev makeWrapper ];
         installPhase = ''
@@ -69,6 +68,11 @@
       minikube
       ghc
       cabal-install
+      cargo
+      rustc
+      rustfmt
+      ghidra-bin
+      p7zip
     ];
 
   networking.hostName = "rjpc";

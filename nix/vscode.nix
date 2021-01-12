@@ -1,5 +1,4 @@
 # TODO: Make my own theme based on alduin
-# TODO: add settings.json and keybindings.json to configuration
 
 { pkgs, extra-extensions ? [ ] }:
 with pkgs;
@@ -7,7 +6,8 @@ with vscode-extensions;
 vscode-with-extensions.override {
   vscodeExtensions = extra-extensions ++ [
     matklad.rust-analyzer
-    vadimcn.vscode-lldb
+    # TODO currently broken on unstable.
+    #vadimcn.vscode-lldb
     vscodevim.vim
     redhat.vscode-yaml
     bbenoist.Nix
