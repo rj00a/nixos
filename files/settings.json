@@ -2,7 +2,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "explorer.confirmDelete": false,
     "editor.folding": false,
-    "editor.renderIndentGuides": false,
+    //"editor.renderIndentGuides": false,
     "files.watcherExclude": {
         "**/.bloop": true,
         "**/.metals": true,
@@ -77,9 +77,8 @@
     ],
     "editor.minimap.enabled": false,
     "workbench.editor.enablePreview": false,
-    "extensions.showRecommendationsOnlyOnDemand": true,
+    "extensions.ignoreRecommendations": true,
     "[haskell]": {
         "editor.tabSize": 2
     }
 }
-

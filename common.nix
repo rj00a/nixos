@@ -23,6 +23,7 @@
       ffmpeg
       file
       git
+      gitkraken
       gperf
       htop
       imagemagick

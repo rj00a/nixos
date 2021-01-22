@@ -61,7 +61,6 @@
       multimc
       my-vscode
       scala3
-      scalafmt
       jdk
       sbt
       kubernetes
