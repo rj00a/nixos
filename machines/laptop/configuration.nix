@@ -11,7 +11,7 @@
   services.xserver = {
     libinput = {
       enable = true;
-      tapping = false; # Disables tap to click
+      touchpad.tapping = false; # Disables tap to click
     };
 
     logind.lidSwitch = "ignore";

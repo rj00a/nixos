@@ -38,12 +38,12 @@
           ];
       };
       scala3 = stdenv.mkDerivation rec {
-        version = "3.0.0-M3";
+        version = "3.0.0-RC1";
         pname = "scala3";
         src = fetchurl {
           url =
             "https://github.com/lampepfl/dotty/releases/download/${version}/scala3-${version}.tar.gz";
-          sha256 = "1ca46231ee8abea770c1328c99010475efa9f2be5faf5c5ce9b8fb8c40345f94";
+          sha256 = "91e9b4b5b0fc32a490f11a7dd64eea50711cbc06eb9aa01a21c5b156589c197c";
         };
         buildInputs = [ jre ncurses.dev makeWrapper ];
         installPhase = ''
@@ -51,7 +51,7 @@
           mv * $out
         '';
         fixupPhase = ''
-          for f in $out/bin/{scala,scalac,scalad}; do
+          for f in $out/bin/{scala,scalac,scaladoc}; do
             wrapProgram $f --set JAVA_HOME ${jre} --prefix PATH : '${ncurses.dev}/bin'
           done
         '';
@@ -92,7 +92,8 @@
 
       libinput = {
         enable = true;
-        accelProfile = "flat";
+        mouse.accelProfile = "flat";
+        mouse.middleEmulation = false;
       };
 
       videoDrivers = [ "nvidia" ];

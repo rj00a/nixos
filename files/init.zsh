@@ -63,7 +63,7 @@ alias update='/etc/nixos/files/update.sh'
 alias collect-garbage='/etc/nixos/files/collect-garbage.sh'
 alias backup='/etc/nixos/files/backup.sh'
 
-alias code-stdenv="nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = \"code-env\"; }' --run code"
+alias code-stdenv="nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = \"code-env\"; }' --run 'code .'"
 alias code-nix-shell="nix-shell --run 'code .'"
 
 ccd() {

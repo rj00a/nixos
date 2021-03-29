@@ -105,7 +105,7 @@ set autoindent
 set secure
 
 " Keep the cursor centered.
-set scrolloff=999
+"set scrolloff=999
 
 " Enable syntax highlighting.
 syntax on

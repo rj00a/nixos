@@ -120,7 +120,13 @@
 
   time.timeZone = "America/Los_Angeles";
 
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -224,7 +230,10 @@
           userName = "Ryan Johnson";
           userEmail = "ryanj00a@gmail.com";
           delta.enable = true;
-          extraConfig.pull.ff = "only";
+          extraConfig = {
+            pull.ff = "only";
+            init.defaultBranch = "main";
+          };
         };
         alacritty = {
           enable = true;
