@@ -42,7 +42,7 @@
         },
     ],
     "vim.useSystemClipboard": true,
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "Nord",
     "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
     //"editor.cursorSurroundingLines": 999,

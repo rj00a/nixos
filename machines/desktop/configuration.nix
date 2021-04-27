@@ -38,12 +38,12 @@
           ];
       };
       scala3 = stdenv.mkDerivation rec {
-        version = "3.0.0-RC1";
+        version = "3.0.0-RC2";
         pname = "scala3";
         src = fetchurl {
           url =
             "https://github.com/lampepfl/dotty/releases/download/${version}/scala3-${version}.tar.gz";
-          sha256 = "91e9b4b5b0fc32a490f11a7dd64eea50711cbc06eb9aa01a21c5b156589c197c";
+          sha256 = "bfcc919a4530b5fa6964bcb2366ff57b754010004f4a5de4556918692bea1985";
         };
         buildInputs = [ jre ncurses.dev makeWrapper ];
         installPhase = ''
@@ -57,7 +57,6 @@
         '';
       };
     in [
-      steam
       multimc
       my-vscode
       scala3
@@ -67,12 +66,13 @@
       minikube
       ghc
       cabal-install
-      cargo
-      rustc
-      rustfmt
+      rustup
       ghidra-bin
       p7zip
+      gzdoom
     ];
+
+  programs.steam.enable = true;
 
   networking.hostName = "rjpc";
 
@@ -81,7 +81,7 @@
     "/mnt/shared".device = "/dev/disk/by-label/SHARED";
   };
 
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
 
   users.users.ryan.extraGroups = [ "docker" ];
 

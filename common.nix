@@ -39,7 +39,7 @@
       pandoc
       perl # needed by fzf-history-widget.
       playerctl
-      (python3.withPackages (pkgs: with pkgs; [sympy]))
+      (python3.withPackages (pkgs: with pkgs; [ sympy numpy matplotlib ]))
       ripgrep
       scc
       shellcheck
@@ -122,10 +122,7 @@
 
   networking = {
     networkmanager.enable = true;
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
   nixpkgs.config.allowUnfree = true;
