@@ -32,18 +32,19 @@
               name = "language-haskell";
               publisher = "justusadam";
               version = "3.3.0";
-              sha256 = 
+              sha256 =
                 "dab96899ce2a8dc6b532fe65c604ffe00011cee1bc7b8920b2189e96905e0589";
             }
           ];
       };
       scala3 = stdenv.mkDerivation rec {
-        version = "3.0.0-RC2";
+        version = "3.0.0-RC3";
         pname = "scala3";
         src = fetchurl {
           url =
             "https://github.com/lampepfl/dotty/releases/download/${version}/scala3-${version}.tar.gz";
-          sha256 = "bfcc919a4530b5fa6964bcb2366ff57b754010004f4a5de4556918692bea1985";
+          sha256 =
+            "15a8fe16b859c3a8c145b9db585e527faf96f598cf257191ca4e182a28b6e9f6";
         };
         buildInputs = [ jre ncurses.dev makeWrapper ];
         installPhase = ''

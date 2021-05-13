@@ -45,7 +45,7 @@
     "workbench.colorTheme": "Nord",
     "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
-    //"editor.cursorSurroundingLines": 999,
+    "editor.cursorSurroundingLines": 5,
     "explorer.confirmDragAndDrop": false,
     "todohighlight.keywords": [
         {
@@ -76,7 +76,7 @@
         "-workbench.action.files.newUntitledFile"
     ],
     "editor.minimap.enabled": false,
-    "workbench.editor.enablePreview": false,
+    //"workbench.editor.enablePreview": false,
     "extensions.ignoreRecommendations": true,
     "[haskell]": {
         "editor.tabSize": 2

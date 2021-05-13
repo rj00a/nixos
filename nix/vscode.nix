@@ -6,8 +6,7 @@ with vscode-extensions;
 vscode-with-extensions.override {
   vscodeExtensions = extra-extensions ++ [
     matklad.rust-analyzer
-    # TODO currently broken on unstable.
-    #vadimcn.vscode-lldb
+    vadimcn.vscode-lldb
     vscodevim.vim
     redhat.vscode-yaml
     bbenoist.Nix
