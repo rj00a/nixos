@@ -11,6 +11,7 @@
   # Packages I know I'll always want on all my machines.
   environment = {
     systemPackages = with pkgs; [
+      agda
       ascii
       audacity
       bitwarden
@@ -23,7 +24,6 @@
       ffmpeg
       file
       git
-      gitkraken
       gperf
       htop
       imagemagick
@@ -274,10 +274,12 @@
         chromium.enable = true;
         htop = {
           enable = true;
-          hideThreads = true;
-          hideUserlandThreads = true;
-          highlightBaseName = true;
-          showProgramPath = false;
+          settings = {
+            hide_threads = true;
+            hide_userland_threads = true;
+            highlight_base_name = true;
+            show_program_path = false;
+          };
         };
         fzf = {
           enable = true;
