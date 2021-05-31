@@ -29,6 +29,9 @@ export TZ=America/Los_Angeles
 # Fixes a bad interaction between intellij and bspwm
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Java doesn't use antialiasing by default
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+
 unset GIT_ASKPASS
 unset SSH_ASKPASS
 

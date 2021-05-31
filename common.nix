@@ -11,6 +11,7 @@
   # Packages I know I'll always want on all my machines.
   environment = {
     systemPackages = with pkgs; [
+      (python3.withPackages (pkgs: with pkgs; [ sympy numpy matplotlib ]))
       agda
       ascii
       audacity
@@ -36,10 +37,10 @@
       neofetch
       nixfmt
       nmap
+      p7zip
       pandoc
       perl # needed by fzf-history-widget.
       playerctl
-      (python3.withPackages (pkgs: with pkgs; [ sympy numpy matplotlib ]))
       ripgrep
       scc
       shellcheck
@@ -173,8 +174,10 @@
     autoRepeatInterval = 25;
   };
 
-  programs.dconf.enable =
-    true; # Required for setting gtk theme in home manager.
+  programs = {
+    dconf.enable = true; # Required for setting gtk theme in home manager.
+    java.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

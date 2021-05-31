@@ -12,6 +12,7 @@
           [
             ms-kubernetes-tools.vscode-kubernetes-tools
             scala-lang.scala
+            scalameta.metals
             haskell.haskell
           ] ++ vscode-utils.extensionsFromVscodeMarketplace [
             {
@@ -21,13 +22,13 @@
               sha256 =
                 "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
             }
-            {
-              name = "dotty";
-              publisher = "lampepfl";
-              version = "0.1.16";
-              sha256 =
-                "0a331a49e76d90d326c7c05b2b003cb0c41764769815c76b3569439d991ee4d5";
-            }
+            #{
+            #  name = "dotty";
+            #  publisher = "lampepfl";
+            #  version = "0.1.16";
+            #  sha256 =
+            #    "0a331a49e76d90d326c7c05b2b003cb0c41764769815c76b3569439d991ee4d5";
+            #}
             {
               name = "language-haskell";
               publisher = "justusadam";
@@ -38,13 +39,13 @@
           ];
       };
       scala3 = stdenv.mkDerivation rec {
-        version = "3.0.0-RC3";
+        version = "3.0.0";
         pname = "scala3";
         src = fetchurl {
           url =
             "https://github.com/lampepfl/dotty/releases/download/${version}/scala3-${version}.tar.gz";
           sha256 =
-            "15a8fe16b859c3a8c145b9db585e527faf96f598cf257191ca4e182a28b6e9f6";
+            "fc5db2bf85c7d08de80b7205aa3fa3c29cd2842b5311f4f383e276e9797e3fe6";
         };
         buildInputs = [ jre ncurses.dev makeWrapper ];
         installPhase = ''
@@ -61,7 +62,6 @@
       multimc
       my-vscode
       scala3
-      jdk
       sbt
       kubernetes
       minikube
@@ -69,7 +69,6 @@
       cabal-install
       rustup
       ghidra-bin
-      p7zip
       gzdoom
     ];
 
