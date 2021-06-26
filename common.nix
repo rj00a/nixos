@@ -11,11 +11,13 @@
   # Packages I know I'll always want on all my machines.
   environment = {
     systemPackages = with pkgs; [
+      (linuxPackages.perf)
       (python3.withPackages (pkgs: with pkgs; [ sympy numpy matplotlib ]))
       agda
       ascii
       audacity
       bitwarden
+      cargo-flamegraph
       colordiff
       corefonts
       discord
@@ -24,6 +26,7 @@
       fd
       ffmpeg
       file
+      firefox
       git
       gperf
       htop
@@ -37,8 +40,10 @@
       neofetch
       nixfmt
       nmap
+      obs-studio
       p7zip
       pandoc
+      patchelf
       perl # needed by fzf-history-widget.
       playerctl
       ripgrep
@@ -58,6 +63,7 @@
       woeusb
       x11_ssh_askpass
       xclip
+      xdotool
       xfce.thunar
       youtube-dl
       zathura
@@ -216,7 +222,7 @@
           enable = true;
           package = pkgs.polybarFull;
           config = import nix/polybar.nix;
-          script = "polybar main &";
+          script = ":"; # TODO: "polybar main &" not running?
         };
         unclutter = {
           enable = true;

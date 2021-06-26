@@ -7,7 +7,7 @@ vscode-with-extensions.override {
   vscodeExtensions = extra-extensions ++ [
     matklad.rust-analyzer
     vadimcn.vscode-lldb
-    vscodevim.vim
+    #vscodevim.vim
     redhat.vscode-yaml
     bbenoist.Nix
   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
@@ -28,9 +28,9 @@ vscode-with-extensions.override {
     {
       name = "shellcheck";
       publisher = "timonwong";
-      version = "0.14.0";
+      version = "0.14.4";
       sha256 =
-        "5197411965580b6ec3773e649ab30c08ed80ed997a48fb50e297ea668a6ab722";
+        "95fc8f343c41322eb21d16ff7bfb100b86ef40e5ac1d49f1a81edbc43509e317";
     }
     {
       name = "toml";
@@ -56,9 +56,9 @@ vscode-with-extensions.override {
     {
       name = "nord-visual-studio-code";
       publisher = "arcticicestudio";
-      version = "0.15.1";
+      version = "0.17.1";
       sha256 =
-        "1223b3a0775e779c2ca069d260dd5defb073f0b40d4fcaaf737be0cea7048551";
+        "ce5d2ab31a47eb6c748cca44a99c057e43efacc7cfeff9fd657b8a8100506bdc";
     }
     {
       name = "august-themes";

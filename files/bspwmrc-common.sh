@@ -16,3 +16,6 @@ bspc config pointer_modifier mod4
 bspc config focus_follows_pointer true
 
 bspc rule -a Zathura state=tiled
+
+polybar main &
+

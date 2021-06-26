@@ -1,4 +1,5 @@
 {
+    "keyboard.dispatch": "keyCode",
     "workbench.startupEditor": "newUntitledFile",
     "explorer.confirmDelete": false,
     "editor.folding": false,
