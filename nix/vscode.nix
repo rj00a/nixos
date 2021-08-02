@@ -47,18 +47,11 @@ vscode-with-extensions.override {
         "39d3dc40d66fe79bf630691c7170f4aa68261ad5e7992e80d9572363562e2269";
     }
     {
-      name = "github-plus-theme";
-      publisher = "thenikso";
-      version = "1.2.1";
-      sha256 =
-        "63074df2b378bc247191a25536bcf43045689b093edd979f75a10645dc23391b";
-    }
-    {
       name = "nord-visual-studio-code";
       publisher = "arcticicestudio";
-      version = "0.17.1";
+      version = "0.18.0";
       sha256 =
-        "ce5d2ab31a47eb6c748cca44a99c057e43efacc7cfeff9fd657b8a8100506bdc";
+        "528ea9791fb664d5fa9f027461aaf7d8f7b4adf059f9fe9e7f5718854bd551b1";
     }
     {
       name = "august-themes";

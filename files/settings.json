@@ -3,7 +3,15 @@
     "workbench.startupEditor": "newUntitledFile",
     "explorer.confirmDelete": false,
     "editor.folding": false,
-    //"editor.renderIndentGuides": false,
+    "editor.cursorSurroundingLines": 5,
+    "editor.cursorStyle": "block",
+    "editor.autoSurround": "never",
+    "editor.autoClosingBrackets": "never",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.wordBasedSuggestions": false,
+    "editor.minimap.enabled": false,
+    "editor.smoothScrolling": false,
     "files.watcherExclude": {
         "**/.bloop": true,
         "**/.metals": true,
@@ -46,7 +54,6 @@
     "workbench.colorTheme": "Nord",
     "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
-    "editor.cursorSurroundingLines": 5,
     "explorer.confirmDragAndDrop": false,
     "todohighlight.keywords": [
         {
@@ -68,7 +75,6 @@
     "update.mode": "none",
     "editor.fontSize": 14,
     //"editor.lineHeight": 16,
-    "editor.smoothScrolling": false,
     "git.autofetch": false,
     "workbench.iconTheme": "material-icon-theme",
     // Prevent keybindings from conflicting with the integrated terminal.
@@ -76,7 +82,6 @@
         "-workbench.action.quickOpen",
         "-workbench.action.files.newUntitledFile"
     ],
-    "editor.minimap.enabled": false,
     //"workbench.editor.enablePreview": false,
     "extensions.ignoreRecommendations": true,
     "[haskell]": {
