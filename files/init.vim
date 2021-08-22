@@ -104,8 +104,8 @@ set autoindent
 " Prevents exrc and other stuff from running potentially dangerous shell commands.
 set secure
 
-" Keep the cursor centered.
-"set scrolloff=999
+" Minimal number of screen lines to keep above and below the cursor.
+set scrolloff=7
 
 " Enable syntax highlighting.
 syntax on

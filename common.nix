@@ -3,8 +3,6 @@
 
 { config, pkgs, ... }:
 
-#let pkgs = import submodules/nixpkgs/nixos {}; in
-
 {
   imports = [ (import submodules/home-manager/nixos) ];
 
@@ -12,12 +10,10 @@
   environment = {
     systemPackages = with pkgs; [
       (linuxPackages.perf)
-      (python3.withPackages (pkgs: with pkgs; [ sympy numpy matplotlib ]))
-      agda
+      (python3.withPackages (p: [ p.sympy p.numpy p.matplotlib ]))
       ascii
       audacity
       bitwarden
-      cargo-flamegraph
       colordiff
       corefonts
       discord
@@ -26,7 +22,6 @@
       fd
       ffmpeg
       file
-      firefox
       git
       gperf
       htop
@@ -49,6 +44,7 @@
       ripgrep
       scc
       shellcheck
+      steam-run
       strace
       sxiv
       tealdeer

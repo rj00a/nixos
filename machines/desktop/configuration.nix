@@ -67,9 +67,12 @@
       minikube
       ghc
       cabal-install
+      rust-analyzer
       rustup
       ghidra-bin
       gzdoom
+      (agda.withPackages (p: [ p.standard-library ]))
+      cargo-flamegraph
     ];
 
   programs.steam.enable = true;

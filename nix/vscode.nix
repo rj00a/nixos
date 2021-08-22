@@ -9,7 +9,7 @@ vscode-with-extensions.override {
     vadimcn.vscode-lldb
     #vscodevim.vim
     redhat.vscode-yaml
-    bbenoist.Nix
+    bbenoist.nix
   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "nixfmt-vscode";
@@ -52,13 +52,6 @@ vscode-with-extensions.override {
       version = "0.18.0";
       sha256 =
         "528ea9791fb664d5fa9f027461aaf7d8f7b4adf059f9fe9e7f5718854bd551b1";
-    }
-    {
-      name = "august-themes";
-      publisher = "inci-august";
-      version = "2.2.3";
-      sha256 =
-        "60186d21b2410986b526e4749378cc5bc4d390bd7563afa64bb2b3167f9f6c1b";
     }
   ];
 }

@@ -2,11 +2,12 @@
     "keyboard.dispatch": "keyCode",
     "workbench.startupEditor": "newUntitledFile",
     "explorer.confirmDelete": false,
-    "editor.folding": false,
-    "editor.cursorSurroundingLines": 5,
-    "editor.cursorStyle": "block",
+    "editor.folding": true,
+    "editor.cursorSurroundingLines": 7,
+    // "editor.cursorStyle": "block",
+    "editor.cursorWidth": 4,
     "editor.autoSurround": "never",
-    "editor.autoClosingBrackets": "never",
+    // "editor.autoClosingBrackets": "never",
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.suggestOnTriggerCharacters": false,
     "editor.wordBasedSuggestions": false,
@@ -18,6 +19,11 @@
         "**/.ammonite": true
     },
     "files.autoSave": "afterDelay",
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#00ff00",
+        "terminalCursor.foreground": "#00ff00"
+    },
+
     "vim.changeWordIncludesWhitespace": true,
     "vim.gdefault": true,
     "vim.highlightedyank.enable": true,
