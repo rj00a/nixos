@@ -35,11 +35,11 @@
       neofetch
       nixfmt
       nmap
+      nushell
       obs-studio
       p7zip
       pandoc
       patchelf
-      perl # needed by fzf-history-widget.
       playerctl
       ripgrep
       scc
@@ -50,7 +50,6 @@
       tealdeer
       traceroute
       trash-cli
-      tree
       unrar
       unzip
       valgrind
@@ -64,10 +63,7 @@
       youtube-dl
       zathura
       zip
-      zsh
-    ];
-    pathsToLink = [
-      "/share/zsh" # zsh completions for system packages.
+      zoxide
     ];
   };
 
@@ -85,7 +81,7 @@
   };
 
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.nushell;
     # Don't forget to set a password with ‘passwd’.
     users.ryan = {
       isNormalUser = true;
@@ -204,8 +200,7 @@
         '';
 
         ".config/Code/User/settings.json".source = files/settings.json;
-
-        ".config/Code/User/keybindings.json".source = files/keybindings.json;
+        ".config/nu/config.toml".source = files/nu-config.toml;
       };
       xsession = {
         pointerCursor = {
@@ -286,38 +281,13 @@
             show_program_path = false;
           };
         };
-        fzf = {
-          enable = true;
-          enableZshIntegration = true;
-        };
+        fzf.enable = true;
         mpv = {
           enable = true;
           config = {
             profile = "gpu-hq";
             ytdl-format = "bestvideo+bestaudio";
           };
-        };
-        zsh = {
-          enable = true;
-          enableAutosuggestions = true;
-          enableCompletion = true;
-          enableVteIntegration = true;
-          autocd = true;
-          oh-my-zsh = {
-            enable = true;
-            plugins = [ "cargo" "colored-man-pages" "ripgrep" "rsync" "rust" ];
-          };
-          plugins = [
-            {
-              name = "zsh-syntax-highlighting";
-              src = submodules/zsh-syntax-highlighting;
-            }
-            {
-              name = "zsh-z";
-              src = submodules/zsh-z;
-            }
-          ];
-          initExtra = builtins.readFile files/init.zsh;
         };
         neovim = {
           enable = true;

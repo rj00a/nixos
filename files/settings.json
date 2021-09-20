@@ -92,5 +92,15 @@
     "extensions.ignoreRecommendations": true,
     "[haskell]": {
         "editor.tabSize": 2
-    }
+    },
+    "terminal.integrated.profiles.linux": {
+        "nushell": {
+            "path": "nu",
+        },
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "nushell"
 }
