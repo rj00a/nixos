@@ -6,7 +6,7 @@
 {
   imports = [ (import submodules/home-manager/nixos) ];
 
-  # Packages I know I'll always want on all my machines.
+  # Packages I want on all my machines.
   environment = {
     systemPackages = with pkgs; [
       (linuxPackages.perf)
@@ -65,6 +65,12 @@
       zip
       zoxide
     ];
+
+    etc."resolv.conf".text = ''
+      nameserver 1.1.1.1
+      nameserver 8.8.8.8
+      options edns0
+    '';
   };
 
   # TODO: Emojis are a mix of flat colorless and twitter ones.
@@ -121,7 +127,7 @@
 
   networking = {
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    #nameservers = [ "1.1.1.1" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -302,15 +308,18 @@
               vim-surround
               fzf-vim
               (buildVimPlugin {
-                name = "alduin";
+                pname = "alduin";
+                version = "1.0.0";
                 src = files/alduin;
               })
               (buildVimPlugin {
-                name = "searchindex";
+                pname = "searchindex";
+                version = "1.0.0";
                 src = submodules/vim-searchindex;
               })
               (buildVimPlugin {
-                name = "bbye";
+                pname = "bbye";
+                version = "1.0.0";
                 src = submodules/vim-bbye;
               })
             ];

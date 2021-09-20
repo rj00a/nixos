@@ -59,7 +59,6 @@
         '';
       };
     in [
-      multimc
       my-vscode
       scala3
       sbt
@@ -71,6 +70,7 @@
       rustup
       ghidra-bin
       gzdoom
+      minecraft
       (agda.withPackages (p: [ p.standard-library ]))
       cargo-flamegraph
     ];
