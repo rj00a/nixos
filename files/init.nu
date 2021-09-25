@@ -35,7 +35,13 @@ alias update = bash /etc/nixos/files/update.sh
 alias collect-garbage = bash /etc/nixos/files/collect-garbage.sh
 alias backup = bash /etc/nixos/files/backup.sh
 
-alias code-stdenv = nix-shell -E '(import <nixpkgs> {}).stdenv.mkDerivation { name = "stdenv"; }' --run "code ."
+alias code-stdenv = nix-shell -E '
+with import <nixpkgs> {};
+stdenv.mkDerivation {
+  name = "stdenv";
+  buildInputs = [pkg-config openssl];
+}' --run "code ."
+
 alias code-nix-shell = nix-shell --run 'code .'
 
 # Nushell's cp rm and mv don't prompt before being destructive so let's use the system commands for now.
