@@ -23,6 +23,7 @@
         "editorCursor.foreground": "#00ff00",
         "terminalCursor.foreground": "#00ff00"
     },
+    "editor.suggest.showSnippets": false,
 
     "vim.changeWordIncludesWhitespace": true,
     "vim.gdefault": true,
@@ -91,6 +92,9 @@
     //"workbench.editor.enablePreview": false,
     "extensions.ignoreRecommendations": true,
     "[haskell]": {
+        "editor.tabSize": 2
+    },
+    "[coq]": {
         "editor.tabSize": 2
     },
     "terminal.integrated.profiles.linux": {

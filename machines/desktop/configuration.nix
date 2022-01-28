@@ -11,8 +11,8 @@
         extra-extensions = with vscode-extensions;
           [
             ms-kubernetes-tools.vscode-kubernetes-tools
-            scala-lang.scala
-            scalameta.metals
+            #scala-lang.scala
+            #scalameta.metals
             haskell.haskell
           ] ++ vscode-utils.extensionsFromVscodeMarketplace [
             {
@@ -22,13 +22,13 @@
               sha256 =
                 "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
             }
-            #{
-            #  name = "dotty";
-            #  publisher = "lampepfl";
-            #  version = "0.1.16";
-            #  sha256 =
-            #    "0a331a49e76d90d326c7c05b2b003cb0c41764769815c76b3569439d991ee4d5";
-            #}
+            {
+              name = "lean4";
+              publisher = "leanprover";
+              version = "0.0.47";
+              sha256 =
+                "6e202e52d7faecf915eade964cfe66bcbc7f049a1c3fc11574381391f5d91652";
+            }
             {
               name = "language-haskell";
               publisher = "justusadam";
@@ -60,19 +60,18 @@
       };
     in [
       my-vscode
-      scala3
-      sbt
       kubernetes
       minikube
       ghc
       cabal-install
       rust-analyzer
       rustup
+      cargo-flamegraph
       ghidra-bin
       gzdoom
       minecraft
+      elan
       (agda.withPackages (p: [ p.standard-library ]))
-      cargo-flamegraph
     ];
 
   programs.steam.enable = true;

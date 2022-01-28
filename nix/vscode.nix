@@ -10,6 +10,7 @@ vscode-with-extensions.override {
     #vscodevim.vim
     redhat.vscode-yaml
     bbenoist.nix
+    arcticicestudio.nord-visual-studio-code
   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "nixfmt-vscode";
@@ -47,11 +48,25 @@ vscode-with-extensions.override {
         "39d3dc40d66fe79bf630691c7170f4aa68261ad5e7992e80d9572363562e2269";
     }
     {
-      name = "nord-visual-studio-code";
-      publisher = "arcticicestudio";
-      version = "0.18.0";
+      name = "shader";
+      publisher = "slevesque";
+      version = "1.1.5";
       sha256 =
-        "528ea9791fb664d5fa9f027461aaf7d8f7b4adf059f9fe9e7f5718854bd551b1";
+        "3dfdfb15e40c365bfbe1fecb333f7e08ab1c17a5234d9ed9a5c69914ab57d993";
+    }
+    #{
+    #  name = "glsl-canvas";
+    #  publisher = "circledev";
+    #  version = "0.2.14";
+    #  sha256 =
+    #    "af93ac2ba49270b63b135e91480a3f589dd5df1beb56a14852cc12d5ec19326c";
+    #}
+    {
+      name = "shader-toy";
+      publisher = "stevensona";
+      version = "0.10.15";
+      sha256 =
+        "dbd7a3d59bfc6548f711aed9071a981faaf8bc38c33c9cec60c0a69e9dfe6ab4";
     }
   ];
 }

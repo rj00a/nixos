@@ -22,7 +22,10 @@ t echo "==== Copying Home Directory ===="
 t rsync -a --delete --progress --stats ~/ "$backup_mnt/homedir" \
     --exclude=.cache \
     --exclude=.ccache \
-    --exclude=.local/share/Trash
+    --exclude=.local/share/Trash \
+    --exclude=.local/share/Steam \
+    --exclude=.rustup \
+    --exclude=.cargo
 
 t echo "==== Copying Bulk Storage ===="
 t rsync -a --delete --progress --stats /mnt/bulk/ "$backup_mnt/bulk" \
