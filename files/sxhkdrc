@@ -9,7 +9,7 @@ super + Return
 
 # Volume control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-    amixer sset Master {4%+,4%-,toggle}
+    pamixer {-i 4,-d 4,-m} # TODO: toggle mute?
 
 # Media player controls
 XF86Audio{Play,Pause,Next,Prev}

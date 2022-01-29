@@ -14,7 +14,7 @@ git submodule foreach git pull origin master
 sudo nixos-rebuild switch --upgrade
 tldr --update &
 rustup update
-trash-empty
+trash-empty -f
 
 # Hack to fix the mouse.
 xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'libinput Accel Speed' -0.3 &

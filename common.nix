@@ -38,16 +38,17 @@
       nushell
       obs-studio
       p7zip
+      pamixer
       pandoc
       patchelf
       playerctl
       ripgrep
-      scc
       shellcheck
       steam-run
       strace
       sxiv
       tealdeer
+      tokei
       traceroute
       trash-cli
       unrar
@@ -147,9 +148,15 @@
     ];
   };
 
-  sound.enable = true;
+  security.rtkit.enable = true;
 
-  hardware.pulseaudio.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 
   services.xserver = {
     enable = true;
