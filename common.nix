@@ -47,14 +47,14 @@
       steam-run
       strace
       sxiv
-      tealdeer
+      #tealdeer TODO: broken download
       tokei
       traceroute
       trash-cli
       unrar
       unzip
       valgrind
-      veracrypt
+      #veracrypt TODO: broken download
       wget
       woeusb
       x11_ssh_askpass
@@ -133,12 +133,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix = {
-    #package = pkgs.nixFlakes;
-    autoOptimiseStore = true;
-    #extraOptions = ''
-    #  experimental-features = nix-command flakes
-    #'';
+  nix.settings = {
+    auto-optimise-store = true;
   };
 
   services.printing = {
@@ -214,6 +210,7 @@
 
         ".config/Code/User/settings.json".source = files/settings.json;
         ".config/nu/config.toml".source = files/nu-config.toml;
+        ".config/rustfmt.toml".source = files/rustfmt.toml;
       };
       xsession = {
         pointerCursor = {

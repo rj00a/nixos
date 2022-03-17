@@ -24,6 +24,8 @@
         "terminalCursor.foreground": "#00ff00"
     },
     "editor.suggest.showSnippets": false,
+    "workbench.list.openMode": "doubleClick",
+    "workbench.editor.enablePreview": false,
 
     "vim.changeWordIncludesWhitespace": true,
     "vim.gdefault": true,

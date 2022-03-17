@@ -8,35 +8,6 @@
     let
       my-vscode = import ../../nix/vscode.nix {
         inherit pkgs;
-        extra-extensions = with vscode-extensions;
-          [
-            ms-kubernetes-tools.vscode-kubernetes-tools
-            #scala-lang.scala
-            #scalameta.metals
-            haskell.haskell
-          ] ++ vscode-utils.extensionsFromVscodeMarketplace [
-            {
-              name = "vscode-docker";
-              publisher = "ms-azuretools";
-              version = "1.7.0";
-              sha256 =
-                "ebd90077d2b933dd430ee3ea4d89255f18bb0ad5f6069996ada9403ecdf08576";
-            }
-            {
-              name = "lean4";
-              publisher = "leanprover";
-              version = "0.0.47";
-              sha256 =
-                "6e202e52d7faecf915eade964cfe66bcbc7f049a1c3fc11574381391f5d91652";
-            }
-            {
-              name = "language-haskell";
-              publisher = "justusadam";
-              version = "3.3.0";
-              sha256 =
-                "dab96899ce2a8dc6b532fe65c604ffe00011cee1bc7b8920b2189e96905e0589";
-            }
-          ];
       };
       scala3 = stdenv.mkDerivation rec {
         version = "3.0.0";
