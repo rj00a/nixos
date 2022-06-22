@@ -11,19 +11,22 @@
     systemPackages = with pkgs; [
       (linuxPackages.perf)
       (python3.withPackages (p: [ p.sympy p.numpy p.matplotlib ]))
+      airshipper
       ascii
       audacity
       bitwarden
       colordiff
       corefonts
+      crawlTiles
+      difftastic
       discord
-      dmenu
       exif
       fd
       ffmpeg
       file
       git
       gperf
+      hexchat
       htop
       imagemagick
       jq
@@ -43,6 +46,7 @@
       patchelf
       playerctl
       ripgrep
+      rofi
       shellcheck
       steam-run
       strace
@@ -62,7 +66,7 @@
       xdotool
       xfce.thunar
       youtube-dl
-      zathura
+      #zathura TODO: broken install
       zip
       zoxide
     ];
@@ -129,6 +133,7 @@
   networking = {
     networkmanager.enable = true;
     #nameservers = [ "1.1.1.1" ];
+    #firewall.allowedTCPPorts = [ 25565 ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -199,21 +204,34 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.ryan = {
-      home.file = {
-        ".icons/default/index.theme".text = ''
-          [Icon Theme]
-          Inherits=Numix-Cursor-Light'';
+      home = {
+        file = {
+          ".icons/default/index.theme".text = ''
+            [Icon Theme]
+            Inherits=Numix-Cursor-Light'';
 
-        ".config/nixpkgs/config.nix".text = ''
-          { allowUnfree = true; }
-        '';
+          ".config/nixpkgs/config.nix".text = ''
+            { allowUnfree = true; }
+          '';
 
-        ".config/Code/User/settings.json".source = files/settings.json;
-        ".config/nu/config.toml".source = files/nu-config.toml;
-        ".config/rustfmt.toml".source = files/rustfmt.toml;
-      };
-      xsession = {
+          ".config/nushell/config.nu".text = ''
+            # Do this so that we don't have to rebuild every time we edit the config.
+            source /etc/nixos/files/config.nu
+          '';
+
+          ".config/rofi/config.rasi".text = ''
+            @theme "gruvbox-dark-hard"
+          '';
+
+          ".crawl/init.txt".text = ''
+            show_more = false
+          '';
+
+          ".config/Code/User/settings.json".source = files/settings.json;
+          ".config/rustfmt.toml".source = files/rustfmt.toml;
+        };
         pointerCursor = {
+          x11.enable = true;
           package = pkgs.numix-cursor-theme;
           name = "Numix-Cursor-Light";
         };
@@ -240,6 +258,7 @@
           extraConfig = {
             pull.ff = "only";
             init.defaultBranch = "main";
+            diff.external = "difft";
           };
         };
         alacritty = {

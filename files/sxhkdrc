@@ -24,9 +24,9 @@ XF86Mon{BrightnessUp,BrightnessDown}
 {_,shift + }Print
     maim -u -{s,i $(xdotool getactivewindow)} ~/last-screenshot.png
 
-# Run dmenu
+# Run rofi
 super + d
-    dmenu_run -fn NotoSans -nb '#121212' -sf '#121212' -sb '#af5f5f' -nf '#af5f5f'
+    rofi -show run
 
 # Switch between tiled and monocle layout
 super + space

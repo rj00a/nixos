@@ -24,6 +24,8 @@
         "terminalCursor.foreground": "#00ff00"
     },
     "editor.suggest.showSnippets": false,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.bracketPairColorization.enabled": false,
     "workbench.list.openMode": "doubleClick",
     "workbench.editor.enablePreview": false,
 
@@ -108,5 +110,6 @@
             "icon": "terminal-bash"
         }
     },
-    "terminal.integrated.defaultProfile.linux": "nushell"
+    "terminal.integrated.defaultProfile.linux": "nushell",
+    "diffEditor.ignoreTrimWhitespace": false
 }

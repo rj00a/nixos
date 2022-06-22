@@ -147,7 +147,7 @@ nnoremap <c-c> <silent> <c-c>
 
 " Closes the current buffer without closing the window.
 " Also doesn't leave any [New File]s around.
-" Provided vim-bbye.
+" Provided by vim-bbye.
 noremap <silent> <leader>k :up\|Bdelete<cr>
 noremap <silent> <leader>K :Bdelete!<cr>
 

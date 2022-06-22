@@ -12,7 +12,6 @@ cd ..
 git pull origin master
 git submodule foreach git pull origin master
 sudo nixos-rebuild switch --upgrade
-tldr --update &
 rustup update
 trash-empty -f
 

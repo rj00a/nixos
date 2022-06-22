@@ -1,3 +1,0 @@
-startup = ["source /etc/nixos/files/init.nu"]
-skip_welcome_message = true
-rm_always_trash = true
