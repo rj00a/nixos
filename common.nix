@@ -11,6 +11,8 @@
     systemPackages = with pkgs; [
       (linuxPackages.perf)
       (python3.withPackages (p: [ p.sympy p.numpy p.matplotlib ]))
+      #tealdeer TODO: broken download
+      #veracrypt TODO: broken download
       airshipper
       ascii
       audacity
@@ -20,16 +22,22 @@
       crawlTiles
       difftastic
       discord
+      easyeffects
       exif
       fd
       ffmpeg
       file
+      gifski
       git
       gperf
+      gradle
       hexchat
       htop
+      jetbrains.idea-community
       imagemagick
+      inkscape
       jq
+      kdenlive
       krita
       lshw
       lxappearance
@@ -45,20 +53,19 @@
       pandoc
       patchelf
       playerctl
+      polymc
       ripgrep
       rofi
       shellcheck
       steam-run
       strace
       sxiv
-      #tealdeer TODO: broken download
       tokei
       traceroute
       trash-cli
       unrar
       unzip
       valgrind
-      #veracrypt TODO: broken download
       wget
       woeusb
       x11_ssh_askpass
@@ -66,7 +73,7 @@
       xdotool
       xfce.thunar
       youtube-dl
-      #zathura TODO: broken install
+      zathura
       zip
       zoxide
     ];
@@ -101,9 +108,10 @@
     };
   };
 
-  # Make sudo not timeout waiting for a passwd.
+  # Make sudo not timeout waiting for a password.
+  # Also enable insults.
   security.sudo.extraConfig = ''
-    Defaults passwd_timeout=0
+    Defaults passwd_timeout=0, insults
   '';
 
   # Use the systemd-boot EFI boot loader.
@@ -205,6 +213,7 @@
     useGlobalPkgs = true;
     users.ryan = {
       home = {
+        stateVersion = "20.03";
         file = {
           ".icons/default/index.theme".text = ''
             [Icon Theme]

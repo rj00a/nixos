@@ -29,6 +29,8 @@
     "workbench.list.openMode": "doubleClick",
     "workbench.editor.enablePreview": false,
 
+    "rust-analyzer.checkOnSave.command": "clippy",
+
     "vim.changeWordIncludesWhitespace": true,
     "vim.gdefault": true,
     "vim.highlightedyank.enable": true,
