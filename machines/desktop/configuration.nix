@@ -35,12 +35,7 @@
       minikube
       ghc
       cabal-install
-      rust-analyzer
-      rustup
-      cargo-flamegraph
       ghidra-bin
-      gzdoom
-      minecraft
       elan
       (agda.withPackages (p: [ p.standard-library ]))
     ];

@@ -17,6 +17,7 @@
       ascii
       audacity
       bitwarden
+      cargo-flamegraph
       colordiff
       corefonts
       crawlTiles
@@ -57,6 +58,7 @@
       polymc
       ripgrep
       rofi
+      rustup
       shellcheck
       steam-run
       strace
