@@ -1,5 +1,10 @@
 # ======== CUSTOM STUFF ======== #
 
+let-env config {
+    # Disable welcome message
+    show_banner: false
+}
+
 # Load zoxide
 source /etc/nixos/files/.zoxide.nu
 

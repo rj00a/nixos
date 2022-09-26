@@ -4,17 +4,19 @@
   imports = [ ../../common.nix ./hardware-configuration.nix ];
 
   environment.systemPackages = with pkgs;
-    [ (import ../../files/vscode.nix { inherit pkgs; }) ];
+    [ (import ../../nix/vscode.nix { inherit pkgs; }) ];
 
   networking.hostName = "rjlaptop";
+
+  services = {
+    logind.lidSwitch = "ignore";
+  };
 
   services.xserver = {
     libinput = {
       enable = true;
       touchpad.tapping = false; # Disables tap to click
     };
-
-    logind.lidSwitch = "ignore";
 
     windowManager.bspwm.configFile = ./bspwmrc;
   };

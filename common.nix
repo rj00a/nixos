@@ -273,10 +273,7 @@
         alacritty = {
           enable = true;
           settings = {
-            font = {
-              normal.family = "Ubuntu Mono";
-              size = 12;
-            };
+            font.normal.family = "Ubuntu Mono";
             colors = {
               primary = {
                 background = "0x000000";
