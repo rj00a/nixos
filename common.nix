@@ -21,7 +21,7 @@
       corefonts
       crawlTiles
       difftastic
-      discord
+      discord-canary
       easyeffects
       exif
       fd
@@ -33,9 +33,9 @@
       gradle
       hexchat
       htop
-      jetbrains.idea-community
       imagemagick
       inkscape
+      jetbrains.idea-community
       jq
       kdenlive
       krita
@@ -48,6 +48,7 @@
       nmap
       nushell
       obs-studio
+      openjdk
       p7zip
       pamixer
       pandoc
@@ -82,6 +83,10 @@
       nameserver 1.1.1.1
       nameserver 8.8.8.8
       options edns0
+    '';
+
+    etc."openal/alsoft.conf".text = ''
+      drivers=pipewire,pulse,alsa
     '';
   };
 
@@ -167,6 +172,11 @@
     jack.enable = true;
   };
 
+  #hardware.pulseaudio = {
+  #  enable = true;
+  #  support32Bit = true;
+  #};
+
   services.xserver = {
     enable = true;
     layout = "us";
@@ -196,7 +206,6 @@
 
   programs = {
     dconf.enable = true; # Required for setting gtk theme in home manager.
-    java.enable = true;
   };
 
   # This value determines the NixOS release from which the default
