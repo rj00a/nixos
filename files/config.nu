@@ -1,6 +1,6 @@
 # ======== CUSTOM STUFF ======== #
 
-let-env config {
+let-env config = {
     # Disable welcome message
     show_banner: false
 }
