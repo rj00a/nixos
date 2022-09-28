@@ -30,6 +30,9 @@ let-env _JAVA_AWT_WM_NONREPARENTING = '1'
 # Java doesn't use antialiasing by default
 let-env _JAVA_OPTIONS = '-Dawt.useSystemAAFontSettings=lcd'
 
+alias suspend = systemctl suspend
+alias hibernate = systemctl hibernate
+
 # Don't cache opened images
 alias sxiv = sxiv -p
 
