@@ -223,6 +223,7 @@
       extraPackages = with pkgs; [
         i3lock
       ];
+      configFile = files/i3-config;
     };
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
