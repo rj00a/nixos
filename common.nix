@@ -13,49 +13,53 @@
       (python3.withPackages (p: [ p.sympy p.numpy p.matplotlib ]))
       #tealdeer TODO: broken download
       #veracrypt TODO: broken download
-      airshipper
+      #airshipper
       ascii
       audacity
       bitwarden
       cargo-flamegraph
       colordiff
+      #coq
+      #coqPackages.coqide
       corefonts
-      crawlTiles
+      #crawlTiles
       difftastic
-      discord-canary
+      discord
       easyeffects
+      #egl-wayland
       exif
       fd
       ffmpeg
       file
+      gh
       gifski
       git
       gperf
       gradle
-      hexchat
       htop
       imagemagick
       inkscape
+      #jdk17
       jetbrains.idea-community
       jq
       kdenlive
       krita
       lshw
-      lxappearance
-      maim
-      ncdu
+      lutris
+      #lxappearance
+      #maim
+      #ncdu
       neofetch
       nixfmt
       nmap
       nushell
       obs-studio
-      openjdk
       p7zip
       pamixer
       pandoc
       patchelf
       playerctl
-      polymc
+      prismlauncher
       ripgrep
       rofi
       rustup
@@ -71,14 +75,18 @@
       valgrind
       wget
       woeusb
-      x11_ssh_askpass
-      xclip
-      xdotool
-      xfce.thunar
+      #x11_ssh_askpass
+      #xclip
+      #xdotool
+      #xfce.thunar
+      #xwayland
       youtube-dl
-      zathura
+      #zathura
       zip
       zoxide
+      #zls
+      #swiProlog
+      graphviz
     ];
 
     etc."resolv.conf".text = ''
@@ -155,6 +163,7 @@
 
   nix.settings = {
     auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   services.printing = {
@@ -184,23 +193,36 @@
     layout = "us";
     # Swap caps lock and escape
     xkbOptions = "caps:swapescape";
-    displayManager.lightdm = {
+    #displayManager.lightdm = {
+    #  enable = true;
+    #  greeters.gtk = {
+    #    iconTheme = {
+    #      package = pkgs.papirus-icon-theme;
+    #      name = "Papirus-Dark";
+    #    };
+    #    cursorTheme = {
+    #      package = pkgs.numix-cursor-theme;
+    #      name = "Numix-Cursor-Light";
+    #    };
+    #  };
+    #  background = files/wallpaper.jpg;
+    #};
+    #displayManager = {
+    #  defaultSession = "plasmawayland";
+    #  sddm.enable = true;
+    #};
+    #desktopManager.plasma5.enable = true;
+    #windowManager.bspwm = {
+    #  enable = true;
+    #  sxhkd.configFile = files/sxhkdrc;
+    #};
+    desktopManager.xterm.enable = false;
+    displayManager.defaultSession = "none+i3";
+    windowManager.i3 = {
       enable = true;
-      greeters.gtk = {
-        iconTheme = {
-          package = pkgs.papirus-icon-theme;
-          name = "Papirus-Dark";
-        };
-        cursorTheme = {
-          package = pkgs.numix-cursor-theme;
-          name = "Numix-Cursor-Light";
-        };
-      };
-      background = files/wallpaper.jpg;
-    };
-    windowManager.bspwm = {
-      enable = true;
-      sxhkd.configFile = files/sxhkdrc;
+      extraPackages = with pkgs; [
+        i3lock
+      ];
     };
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
@@ -208,6 +230,8 @@
 
   programs = {
     dconf.enable = true; # Required for setting gtk theme in home manager.
+    java.enable = true; # Adds the jdk package and sets JAVA_HOME.
+    java.package = pkgs.jdk17;
   };
 
   # This value determines the NixOS release from which the default
