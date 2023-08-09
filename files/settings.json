@@ -120,5 +120,6 @@
     "redhat.telemetry.enabled": false,
     "workbench.sideBar.location": "right",
     // Pain.
-    "java.import.gradle.java.home": "/nix/store/jkv8vb24ab371hlsp55fj953kwh01m8n-openjdk-17.0.6+10/lib/openjdk"
+    "java.import.gradle.java.home": "/nix/store/jkv8vb24ab371hlsp55fj953kwh01m8n-openjdk-17.0.6+10/lib/openjdk",
+    "workbench.tree.expandMode": "doubleClick"
 }

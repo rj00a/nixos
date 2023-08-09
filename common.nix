@@ -47,7 +47,7 @@
       lshw
       lutris
       #lxappearance
-      #maim
+      maim
       #ncdu
       neofetch
       nixfmt
@@ -75,13 +75,13 @@
       valgrind
       wget
       woeusb
-      #x11_ssh_askpass
+      x11_ssh_askpass
       #xclip
-      #xdotool
+      xdotool
       #xfce.thunar
       #xwayland
       youtube-dl
-      #zathura
+      zathura
       zip
       zoxide
       #zls
@@ -119,9 +119,11 @@
     users.ryan = {
       isNormalUser = true;
       # wheel is for sudo.
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "docker" ];
     };
   };
+
+  virtualisation.docker.enable = true;
 
   # Make sudo not timeout waiting for a password.
   # Also enable insults.
@@ -274,6 +276,7 @@
 
           ".config/Code/User/settings.json".source = files/settings.json;
           ".config/rustfmt.toml".source = files/rustfmt.toml;
+          ".config/nushell/config.nu".source = files/config.nu;
         };
         pointerCursor = {
           x11.enable = true;
