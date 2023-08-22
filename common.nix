@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ (import submodules/home-manager/nixos) ];
+  imports = [ (import home-manager/nixos) ];
 
   # Packages I want on all my machines.
   environment = {
@@ -364,37 +364,37 @@
             ytdl-format = "bestvideo+bestaudio";
           };
         };
-        neovim = {
-          enable = true;
-          plugins = with pkgs.vimPlugins;
-            with pkgs.vimUtils; [
-              matchit-zip
-              nerdtree
-              vim-airline
-              vim-airline-themes
-              vim-floaterm
-              vim-polyglot
-              vim-surround
-              fzf-vim
-              (buildVimPlugin {
-                pname = "alduin";
-                version = "1.0.0";
-                src = files/alduin;
-              })
-              (buildVimPlugin {
-                pname = "searchindex";
-                version = "1.0.0";
-                src = submodules/vim-searchindex;
-              })
-              (buildVimPlugin {
-                pname = "bbye";
-                version = "1.0.0";
-                src = submodules/vim-bbye;
-              })
-            ];
-          extraConfig = builtins.readFile files/init.vim;
-          vimAlias = true;
-        };
+        # neovim = {
+        #   enable = true;
+        #   plugins = with pkgs.vimPlugins;
+        #     with pkgs.vimUtils; [
+        #       matchit-zip
+        #       nerdtree
+        #       vim-airline
+        #       vim-airline-themes
+        #       vim-floaterm
+        #       vim-polyglot
+        #       vim-surround
+        #       fzf-vim
+        #       (buildVimPlugin {
+        #         pname = "alduin";
+        #         version = "1.0.0";
+        #         src = files/alduin;
+        #       })
+        #       (buildVimPlugin {
+        #         pname = "searchindex";
+        #         version = "1.0.0";
+        #         src = submodules/vim-searchindex;
+        #       })
+        #       (buildVimPlugin {
+        #         pname = "bbye";
+        #         version = "1.0.0";
+        #         src = submodules/vim-bbye;
+        #       })
+        #     ];
+        #   extraConfig = builtins.readFile files/init.vim;
+        #   vimAlias = true;
+        # };
       };
       gtk = {
         enable = true;
