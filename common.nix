@@ -27,15 +27,17 @@
       discord
       easyeffects
       #egl-wayland
+      element-desktop
       exif
       fd
       ffmpeg
       file
       gh
-      gifski
+      #gifski # TODO: build issues
       git
       gperf
       gradle
+      helix
       htop
       imagemagick
       inkscape
@@ -52,7 +54,7 @@
       neofetch
       nixfmt
       nmap
-      nushell
+      #nushell
       obs-studio
       p7zip
       pamixer
@@ -87,6 +89,7 @@
       #zls
       #swiProlog
       graphviz
+      typos
     ];
 
     etc."resolv.conf".text = ''
@@ -102,7 +105,7 @@
 
   # TODO: Emojis are a mix of flat colorless and twitter ones.
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       ubuntu_font_family
       twitter-color-emoji
       noto-fonts
@@ -114,7 +117,7 @@
   };
 
   users = {
-    defaultUserShell = pkgs.nushell;
+    defaultUserShell = pkgs.fish;
     # Don't forget to set a password with ‘passwd’.
     users.ryan = {
       isNormalUser = true;
@@ -235,6 +238,7 @@
     dconf.enable = true; # Required for setting gtk theme in home manager.
     java.enable = true; # Adds the jdk package and sets JAVA_HOME.
     java.package = pkgs.jdk17;
+    fish.enable = true;
   };
 
   # This value determines the NixOS release from which the default
@@ -261,11 +265,6 @@
             { allowUnfree = true; }
           '';
 
-          ".config/nushell/config.nu".text = ''
-            # Do this so that we don't have to rebuild every time we edit the config.
-            source /etc/nixos/files/config.nu
-          '';
-
           ".config/rofi/config.rasi".text = ''
             @theme "gruvbox-dark-hard"
           '';
@@ -276,7 +275,9 @@
 
           ".config/Code/User/settings.json".source = files/settings.json;
           ".config/rustfmt.toml".source = files/rustfmt.toml;
-          ".config/nushell/config.nu".source = files/config.nu;
+          ".config/fish/config.fish".text = ''
+            source /etc/nixos/files/config.fish
+          '';
         };
         pointerCursor = {
           x11.enable = true;
