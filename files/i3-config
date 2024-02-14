@@ -112,9 +112,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # screenshot controls
-bindsym Print exec maim -u -s ~/last-screenshot.png
-# this command isn't working for some reason.
-bindsym --release $mod+Print exec maim -u -i (xdotool getactivewindow) ~/last-screenshot.png
+bindsym Print exec maim -u -s | tee ~/last-screenshot.png | xclip -selection clipboard -t image/png
+bindsym --release $mod+Print exec maim -u -i (xdotool getactivewindow) | tee ~/last-screenshot.png | xclip -selection clipboard -t image/png
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

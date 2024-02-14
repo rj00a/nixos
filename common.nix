@@ -14,6 +14,7 @@
       #tealdeer TODO: broken download
       #veracrypt TODO: broken download
       #airshipper
+      any-nix-shell
       ascii
       audacity
       bitwarden
@@ -29,6 +30,7 @@
       #egl-wayland
       element-desktop
       exif
+      eza
       fd
       ffmpeg
       file
@@ -46,6 +48,7 @@
       jq
       kdenlive
       krita
+      lapce
       lshw
       lutris
       #lxappearance
@@ -64,6 +67,7 @@
       prismlauncher
       ripgrep
       rofi
+      rust-analyzer
       rustup
       shellcheck
       steam-run
@@ -90,6 +94,9 @@
       #swiProlog
       graphviz
       typos
+      xclip
+      scryer-prolog
+      meson
     ];
 
     etc."resolv.conf".text = ''
@@ -195,9 +202,12 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    # Swap caps lock and escape
-    xkbOptions = "caps:swapescape";
+    xkb = {
+      # Swap caps lock and escape.
+      options = "caps:swapescape";
+      layout = "us";
+    };
+
     #displayManager.lightdm = {
     #  enable = true;
     #  greeters.gtk = {

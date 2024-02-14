@@ -67,7 +67,7 @@
         },
     ],
     "vim.useSystemClipboard": true,
-    "workbench.colorTheme": "Nord",
+    "workbench.colorTheme": "Dark Modern",
     "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
     "explorer.confirmDragAndDrop": false,
@@ -118,8 +118,12 @@
     "terminal.integrated.defaultProfile.linux": "nushell",
     "diffEditor.ignoreTrimWhitespace": false,
     "redhat.telemetry.enabled": false,
-    "workbench.sideBar.location": "right",
+    //"workbench.sideBar.location": "right",
     // Pain.
     "java.import.gradle.java.home": "/nix/store/jkv8vb24ab371hlsp55fj953kwh01m8n-openjdk-17.0.6+10/lib/openjdk",
-    "workbench.tree.expandMode": "doubleClick"
+    "workbench.tree.expandMode": "doubleClick",
+    "security.workspace.trust.untrustedFiles": "open",
+    "[markdown]": {
+        "editor.tabSize": 4,
+    }
 }

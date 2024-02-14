@@ -19,6 +19,7 @@ vscode-with-extensions.override {
     redhat.java
     vscjava.vscode-java-dependency
     tamasfe.even-better-toml
+    ms-vscode.cpptools
   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "vscode-todo-highlight";
@@ -55,5 +56,17 @@ vscode-with-extensions.override {
     #  sha256 =
     #    "92311ec7b2f41763f8a4c7578b8348675cb9f72c0956e6ea0eab2861a8193642";
     #}
+    {
+      name = "github-vscode-theme";
+      publisher = "GitHub";
+      version = "6.3.4";
+      sha256 = "25b23407b8f1b7fda9360fe1323004e690416b72db51d8be185d221195035033";
+    }
+    {
+      name = "mesonbuild";
+      publisher = "mesonbuild";
+      version = "1.21.0";
+      sha256 = "86c59bd444b657f7b5829ddb40c2f84da3a207f5d0f101fa2c2239656bec9b92";
+    }
   ];
 }

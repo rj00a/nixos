@@ -25,7 +25,8 @@ t rsync -a --delete --progress --stats ~/ "$backup_mnt/homedir" \
     --exclude=.local/share/Trash \
     --exclude=.local/share/Steam \
     --exclude=.rustup \
-    --exclude=.cargo
+    --exclude=.cargo \
+    --exclude=target # TODO: make this more precise
 
 t echo "==== Copying Bulk Storage ===="
 t rsync -a --delete --progress --stats /mnt/bulk/ "$backup_mnt/bulk" \
