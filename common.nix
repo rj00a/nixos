@@ -97,6 +97,10 @@
       xclip
       scryer-prolog
       meson
+      clang
+      ninja
+      wineWowPackages.full
+      #gcc
     ];
 
     etc."resolv.conf".text = ''
